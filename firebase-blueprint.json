@@ -1,0 +1,165 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Public and biographical portfolio profile of Hayyan Mohamed",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "titles": { "type": "array" },
+        "heroGreeting": { "type": "string", "maxLength": 150 },
+        "heroDescription": { "type": "string", "maxLength": 500 },
+        "locationBadge": { "type": "string", "maxLength": 100 },
+        "aboutIntro": { "type": "string", "maxLength": 1000 },
+        "aboutBio": { "type": "string", "maxLength": 2000 },
+        "avatarUrl": { "type": "string", "maxLength": 500 }
+      },
+      "required": ["name", "heroGreeting"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "Featured projects and prototypes",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 150 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "image": { "type": "string", "maxLength": 500 },
+        "technologies": { "type": "array" },
+        "liveUrl": { "type": "string", "maxLength": 500 },
+        "githubUrl": { "type": "string", "maxLength": 500 },
+        "featured": { "type": "boolean" },
+        "published": { "type": "boolean" },
+        "order": { "type": "number" }
+      },
+      "required": ["id", "title", "description", "published"]
+    },
+    "PhotographyItem": {
+      "title": "PhotographyItem",
+      "description": "Photography portfolio items across categories like Kassala, Nature, Street, Night",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 150 },
+        "category": { "type": "string", "maxLength": 50 },
+        "imageUrl": { "type": "string", "maxLength": 1000 },
+        "description": { "type": "string", "maxLength": 500 },
+        "location": { "type": "string", "maxLength": 100 },
+        "cameraInfo": { "type": "string", "maxLength": 100 },
+        "featured": { "type": "boolean" },
+        "published": { "type": "boolean" },
+        "order": { "type": "number" }
+      },
+      "required": ["id", "title", "category", "imageUrl", "published"]
+    },
+    "SkillItem": {
+      "title": "SkillItem",
+      "description": "Technical, creative, and medical skills",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 100 },
+        "group": { "type": "string", "maxLength": 50 },
+        "iconName": { "type": "string", "maxLength": 50 },
+        "order": { "type": "number" }
+      },
+      "required": ["id", "name", "group"]
+    },
+    "JourneyItem": {
+      "title": "JourneyItem",
+      "description": "Timeline milestone entries",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "year": { "type": "string", "maxLength": 20 },
+        "title": { "type": "string", "maxLength": 150 },
+        "institution": { "type": "string", "maxLength": 150 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "order": { "type": "number" }
+      },
+      "required": ["id", "year", "title"]
+    },
+    "SocialLink": {
+      "title": "SocialLink",
+      "description": "Configurable social media and contact links",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "platform": { "type": "string", "maxLength": 50 },
+        "label": { "type": "string", "maxLength": 50 },
+        "url": { "type": "string", "maxLength": 500 },
+        "active": { "type": "boolean" }
+      },
+      "required": ["id", "platform", "url", "active"]
+    },
+    "ContactMessage": {
+      "title": "ContactMessage",
+      "description": "Inbound contact form messages from visitors",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 150 },
+        "subject": { "type": "string", "maxLength": 200 },
+        "message": { "type": "string", "maxLength": 2000 },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "name", "email", "message"]
+    },
+    "SiteSettings": {
+      "title": "SiteSettings",
+      "description": "Global portfolio configuration parameters",
+      "type": "object",
+      "properties": {
+        "siteTitle": { "type": "string", "maxLength": 150 },
+        "metaDescription": { "type": "string", "maxLength": 300 },
+        "logoText": { "type": "string", "maxLength": 50 },
+        "profileImage": { "type": "string", "maxLength": 500 },
+        "accentColor": { "type": "string", "maxLength": 20 },
+        "darkModeDefault": { "type": "boolean" },
+        "showWhatsAppButton": { "type": "boolean" },
+        "showPhotographySection": { "type": "boolean" },
+        "showProjectsSection": { "type": "boolean" },
+        "showSkillsSection": { "type": "boolean" },
+        "showJourneySection": { "type": "boolean" },
+        "whatsAppNumber": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["siteTitle", "logoText"]
+    }
+  },
+  "firestore": {
+    "/profile/{profileId}": {
+      "schema": "UserProfile",
+      "description": "Biographical profile data for Hayyan Mohamed"
+    },
+    "/projects/{projectId}": {
+      "schema": "Project",
+      "description": "Showcase portfolio projects and prototypes"
+    },
+    "/photography/{photoId}": {
+      "schema": "PhotographyItem",
+      "description": "Photographic gallery items categorized by theme"
+    },
+    "/skills/{skillId}": {
+      "schema": "SkillItem",
+      "description": "Skills and tools broken down by field"
+    },
+    "/journey/{journeyId}": {
+      "schema": "JourneyItem",
+      "description": "Chronological journey and education milestones"
+    },
+    "/socials/{socialId}": {
+      "schema": "SocialLink",
+      "description": "Social connectivity channels"
+    },
+    "/messages/{messageId}": {
+      "schema": "ContactMessage",
+      "description": "Inbound client and visitor inquiries"
+    },
+    "/settings/{settingId}": {
+      "schema": "SiteSettings",
+      "description": "Site-wide appearance and section display flags"
+    }
+  }
+}

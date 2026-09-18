@@ -1,0 +1,8 @@
+{
+  "name": "Hayyan Mohamed — Portfolio",
+  "description": "الموقع الشخصي الرسمي لحيان محمد — طالب طب، مطور ويب وتطبيقات، مصور فوتوغرافي وشغوف بالذكاء الاصطناعي من السودان.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

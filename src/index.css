@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #FAFAFA;
+    --bg-card: #FFFFFF;
+    --text-primary: #111111;
+    --text-secondary: #52525B;
+    --accent: #2563EB;
+    --border-color: #E4E4E7;
+  }
+
+  .dark {
+    --bg-primary: #0A0A0A;
+    --bg-card: #111111;
+    --text-primary: #FFFFFF;
+    --text-secondary: #A1A1AA;
+    --accent: #38BDF8;
+    --border-color: #27272A;
+  }
+
+  body {
+    font-family: 'Cairo', 'Tajawal', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-heading {
+    font-family: 'Cairo', 'Tajawal', 'Space Grotesk', sans-serif;
+    letter-spacing: normal;
+  }
+
+  ::selection {
+    background-color: #38BDF8;
+    color: #0A0A0A;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 170, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(161, 161, 170, 0.45);
+}
+
+/* Subtle glow utility */
+.glow-accent {
+  box-shadow: 0 0 50px -10px rgba(56, 189, 248, 0.15);
+}
+
+.glow-purple {
+  box-shadow: 0 0 50px -10px rgba(168, 85, 247, 0.12);
+}
+
