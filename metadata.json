@@ -1,6 +1,6 @@
 {
-  "name": "Hayyan Mohamed — Portfolio",
-  "description": "الموقع الشخصي الرسمي لحيان محمد — طالب طب، مطور ويب وتطبيقات، مصور فوتوغرافي وشغوف بالذكاء الاصطناعي من السودان.",
+  "name": "Hayyan Mohamed",
+  "description": "Official website of Hayyan Mohamed (حيان محمد), a Sudanese developer, medical student and photographer based in Kassala, Sudan. Explore his projects, portfolio and photography.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

@@ -4,6 +4,7 @@ import {
   AboutCard,
   Project,
   PhotographyItem,
+  BlogPost,
   SkillItem,
   JourneyItem,
   StatItem,
@@ -15,6 +16,7 @@ import { initialProfile } from '../data/profile';
 import { initialAboutCards } from '../data/aboutCards';
 import { initialProjects } from '../data/projects';
 import { initialPhotography } from '../data/photography';
+import { initialBlog } from '../data/blog';
 import { initialSkills } from '../data/skills';
 import { initialJourney, initialStats } from '../data/journey';
 import { initialSocials } from '../data/socials';
@@ -39,6 +41,7 @@ interface DataContextType {
   aboutCards: AboutCard[];
   projects: Project[];
   photography: PhotographyItem[];
+  blog: BlogPost[];
   skills: SkillItem[];
   journey: JourneyItem[];
   stats: StatItem[];
@@ -61,6 +64,10 @@ interface DataContextType {
   addPhoto: (photo: Omit<PhotographyItem, 'id' | 'order'>) => Promise<boolean>;
   updatePhoto: (id: string, data: Partial<PhotographyItem>) => Promise<boolean>;
   deletePhoto: (id: string) => Promise<boolean>;
+  // Blog Actions
+  addBlogPost: (post: Omit<BlogPost, 'id'>) => Promise<boolean>;
+  updateBlogPost: (id: string, data: Partial<BlogPost>) => Promise<boolean>;
+  deleteBlogPost: (id: string) => Promise<boolean>;
   // Skills Actions
   addSkill: (skill: Omit<SkillItem, 'id' | 'order'>) => Promise<boolean>;
   updateSkill: (id: string, data: Partial<SkillItem>) => Promise<boolean>;
@@ -108,6 +115,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   const [aboutCards, setAboutCards] = useState<AboutCard[]>(cached?.aboutCards || initialAboutCards);
   const [projects, setProjects] = useState<Project[]>(cached?.projects || initialProjects);
   const [photography, setPhotography] = useState<PhotographyItem[]>(cached?.photography || initialPhotography);
+  const [blog, setBlog] = useState<BlogPost[]>(cached?.blog || initialBlog);
   const [skills, setSkills] = useState<SkillItem[]>(cached?.skills || initialSkills);
   const [journey, setJourney] = useState<JourneyItem[]>(cached?.journey || initialJourney);
   const [stats, setStats] = useState<StatItem[]>(cached?.stats || initialStats);
@@ -135,6 +143,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         aboutCards,
         projects,
         photography,
+        blog,
         skills,
         journey,
         stats,
@@ -146,16 +155,17 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     } catch {
       // ignore storage quota errors
     }
-  }, [profile, aboutCards, projects, photography, skills, journey, stats, socials, settings]);
+  }, [profile, aboutCards, projects, photography, blog, skills, journey, stats, socials, settings]);
 
   // Fetch Public Data from Server
   const fetchPublicData = useCallback(async () => {
     try {
-      const [profRes, aboutRes, projRes, photoRes, skillRes, journeyRes, statRes, socRes, setRes] = await Promise.allSettled([
+      const [profRes, aboutRes, projRes, photoRes, blogRes, skillRes, journeyRes, statRes, socRes, setRes] = await Promise.allSettled([
         fetch('/api/profile').then(r => r.ok ? r.json() : null),
         fetch('/api/about-cards').then(r => r.ok ? r.json() : null),
         fetch('/api/projects').then(r => r.ok ? r.json() : null),
         fetch('/api/photography').then(r => r.ok ? r.json() : null),
+        fetch('/api/blog').then(r => r.ok ? r.json() : null),
         fetch('/api/skills').then(r => r.ok ? r.json() : null),
         fetch('/api/journey').then(r => r.ok ? r.json() : null),
         fetch('/api/stats').then(r => r.ok ? r.json() : null),
@@ -179,6 +189,10 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       if (photoRes.status === 'fulfilled' && photoRes.value) {
         setPhotography(photoRes.value);
         updates.photography = photoRes.value;
+      }
+      if (blogRes.status === 'fulfilled' && blogRes.value && Array.isArray(blogRes.value)) {
+        setBlog(blogRes.value);
+        updates.blog = blogRes.value;
       }
       if (skillRes.status === 'fulfilled' && skillRes.value) {
         setSkills(skillRes.value);
@@ -217,11 +231,12 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     if (!token) return;
     try {
       const headers = { Authorization: `Bearer ${token}` };
-      const [statsRes, msgsRes, allProjRes, allPhotoRes] = await Promise.allSettled([
+      const [statsRes, msgsRes, allProjRes, allPhotoRes, allBlogRes] = await Promise.allSettled([
         fetch('/api/admin/stats', { headers }).then(r => r.ok ? r.json() : null),
         fetch('/api/messages', { headers }).then(r => r.ok ? r.json() : null),
         fetch('/api/projects?all=true', { headers }).then(r => r.ok ? r.json() : null),
         fetch('/api/photography?all=true', { headers }).then(r => r.ok ? r.json() : null),
+        fetch('/api/blog?all=true', { headers }).then(r => r.ok ? r.json() : null),
       ]);
 
       if (statsRes.status === 'fulfilled' && statsRes.value) setAdminStats(statsRes.value);
@@ -233,6 +248,10 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       if (allPhotoRes.status === 'fulfilled' && allPhotoRes.value) {
         setPhotography(allPhotoRes.value);
         saveToLocalCache({ photography: allPhotoRes.value });
+      }
+      if (allBlogRes.status === 'fulfilled' && allBlogRes.value && Array.isArray(allBlogRes.value)) {
+        setBlog(allBlogRes.value);
+        saveToLocalCache({ blog: allBlogRes.value });
       }
     } catch (err) {
       console.error("Error fetching admin data:", err);
@@ -565,6 +584,107 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     } catch (err) {
       console.error("Photo delete error:", err);
       showToast("Network error while deleting photo", "error");
+      return false;
+    }
+  };
+
+  // 4b. Blog Actions
+  const addBlogPost = async (postData: Omit<BlogPost, 'id'>): Promise<boolean> => {
+    const token = requireAuthCheck();
+    if (!token) return false;
+
+    try {
+      const res = await fetch('/api/blog', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(postData)
+      });
+
+      if (res.ok) {
+        const newPost = await res.json();
+        setBlog(prev => {
+          const next = [newPost, ...prev.filter(p => p.id !== newPost.id)];
+          saveToLocalCache({ blog: next });
+          return next;
+        });
+        showToast("Blog article published successfully!");
+        return true;
+      } else {
+        const err = await res.json().catch(() => ({}));
+        showToast(err.error || "Failed to create blog article", "error");
+        return false;
+      }
+    } catch (err) {
+      console.error("Blog create error:", err);
+      showToast("Network error while creating blog post", "error");
+      return false;
+    }
+  };
+
+  const updateBlogPost = async (id: string, data: Partial<BlogPost>): Promise<boolean> => {
+    const token = requireAuthCheck();
+    if (!token) return false;
+
+    try {
+      const res = await fetch(`/api/blog/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        const updated = await res.json();
+        setBlog(prev => {
+          const next = prev.map(p => (p.id === id ? { ...p, ...updated } : p));
+          saveToLocalCache({ blog: next });
+          return next;
+        });
+        showToast("Blog article updated successfully!");
+        return true;
+      } else {
+        const err = await res.json().catch(() => ({}));
+        showToast(err.error || "Failed to update article", "error");
+        return false;
+      }
+    } catch (err) {
+      console.error("Blog update error:", err);
+      showToast("Network error while updating blog post", "error");
+      return false;
+    }
+  };
+
+  const deleteBlogPost = async (id: string): Promise<boolean> => {
+    const token = requireAuthCheck();
+    if (!token) return false;
+
+    try {
+      const res = await fetch(`/api/blog/${id}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      if (res.ok) {
+        setBlog(prev => {
+          const next = prev.filter(p => p.id !== id);
+          saveToLocalCache({ blog: next });
+          return next;
+        });
+        showToast("Blog article removed.");
+        return true;
+      } else {
+        const err = await res.json().catch(() => ({}));
+        showToast(err.error || "Failed to delete article", "error");
+        return false;
+      }
+    } catch (err) {
+      console.error("Blog delete error:", err);
+      showToast("Network error while deleting blog post", "error");
       return false;
     }
   };
@@ -949,6 +1069,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         aboutCards,
         projects,
         photography,
+        blog,
         skills,
         journey,
         stats,
@@ -993,6 +1114,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       aboutCards,
       projects,
       photography,
+      blog,
       skills,
       journey,
       stats,
@@ -1037,6 +1159,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         if (Array.isArray(backupData.aboutCards)) setAboutCards(backupData.aboutCards);
         if (Array.isArray(backupData.projects)) setProjects(backupData.projects);
         if (Array.isArray(backupData.photography)) setPhotography(backupData.photography);
+        if (Array.isArray(backupData.blog)) setBlog(backupData.blog);
         if (Array.isArray(backupData.skills)) setSkills(backupData.skills);
         if (Array.isArray(backupData.journey)) setJourney(backupData.journey);
         if (Array.isArray(backupData.stats)) setStats(backupData.stats);
@@ -1065,6 +1188,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         aboutCards,
         projects,
         photography,
+        blog,
         skills,
         journey,
         stats,
@@ -1084,6 +1208,9 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         addPhoto,
         updatePhoto,
         deletePhoto,
+        addBlogPost,
+        updateBlogPost,
+        deleteBlogPost,
         addSkill,
         updateSkill,
         deleteSkill,

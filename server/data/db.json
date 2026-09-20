@@ -1,471 +1,357 @@
 {
   "profile": {
-    "name": "حيان محمد",
-    "titles": [
-      "طالب طب بشري",
-      "مطور ويب وتطبيقات",
-      "مصور فوتوغرافي",
-      "شغوف بالذكاء الاصطناعي والتقنية"
+    "name": "Hayyan Mohamed",
+    "arabicName": "حيان محمد",
+    "alternateNames": [
+      "حيان محمد",
+      "Hayyan Mohammed",
+      "Hyyan Mohamed"
     ],
-    "heroGreeting": "مرحباً، أنا حيان محمد",
-    "heroDescription": "أبني تجارب رقمية متميزة، أستكشف آفاق التقنية والذكاء الاصطناعي، وأوثق جمال اللحظات بعدستي.",
-    "locationBadge": "كسلا، السودان 🇸🇩",
-    "aboutIntro": "أهلاً بك! أنا حيان محمد، طالب طب بشري من السودان، أجمع بين العلوم السريرية والطبية وشغفي العميق بهندسة البرمجيات، فن التصوير الفوتوغرافي، واستخدامات الذكاء الاصطناعي.",
-    "aboutBio": "أستمتع ببناء منتجات رقمية مفيدة، وتعلّم التقنيات الحديثة، وتحويل الأفكار إلى مشاريع واقعية تخدم المجتمع. إلى جانب دراستي الطبية، أعتبر البرمجة والتصوير مساحتين للإبداع والابتكار والتطوير المستمر.",
-    "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+    "titles": [
+      "Sudanese Developer",
+      "Medical Student",
+      "Photographer"
+    ],
+    "heroGreeting": "Hayyan Mohamed",
+    "heroDescription": "Welcome to the official website of Hayyan Mohamed, a Sudanese developer, medical student and photographer based in Kassala, Sudan.",
+    "locationBadge": "Kassala, Sudan",
+    "aboutIntro": "طالب طب ومطور يهتم بتطوير التطبيقات والمواقع والمشاريع التقنية، مع اهتمام بالتصوير والمحتوى البصري.",
+    "aboutBio": "Hayyan Mohamed (حيان محمد) is a Sudanese developer, medical student, and visual photographer based in Kassala, Sudan. Focused on building high-performance web applications, utility tools, and capturing visual moments with careful optical composition.",
+    "avatarUrl": "/avatar.svg",
+    "heroFloatingTagline": "Kassala, Sudan",
+    "heroCtaWorkText": "View Projects",
+    "heroCtaContactText": "Contact"
   },
   "aboutCards": [
     {
-      "id": "card-med",
-      "badge": "🎓 طالب طب",
-      "title": "الطب والعلوم السريرية",
-      "desc": "دراسة الطب والعلوم الصحية في جامعة العلوم والتقانة بالشرق بكسلا، مع شغف عميق بالعلوم السريرية وربطها بالتقنيات الصحية الحديثة.",
-      "iconName": "GraduationCap",
+      "id": "card-dev",
+      "badge": "Developer",
+      "title": "Software & Web Development",
+      "desc": "Developing functional web tools, modern user interfaces, and document utilities with React, TypeScript, and clean modular code.",
+      "iconName": "Code2",
       "order": 1
     },
     {
-      "id": "card-dev",
-      "badge": "💻 مطور برمجيات",
-      "title": "هندسة الويب والتطبيقات",
-      "desc": "بناء تطبيقات وأدوات رقمية عصرية، سريعة وسلسة باستخدام React و Vite و Tailwind CSS مع معايير برمجية نظيفة.",
-      "iconName": "Code2",
+      "id": "card-med",
+      "badge": "Medical Student",
+      "title": "Medical Studies",
+      "desc": "Pursuing medicine with a keen interest in clinical science, healthcare technologies, and algorithmic problem-solving.",
+      "iconName": "Stethoscope",
       "order": 2
     },
     {
       "id": "card-photo",
-      "badge": "📸 مصور فوتوغرافي",
-      "title": "السرد البصري والتوثيق",
-      "desc": "توثيق جمال الطبيعة السودانية، تفاصيل جبل توتيل وقت الشروق، ولحظات الحياة الأصيلة في شوارع وأسواق كسلا.",
+      "badge": "Photographer",
+      "title": "Photography & Visuals",
+      "desc": "Capturing architectural forms, golden-hour landscapes around Kassala and Jabal Tootil, and expressive documentary moments.",
       "iconName": "Camera",
       "order": 3
-    },
-    {
-      "id": "card-ai",
-      "badge": "🤖 شغوف بالذكاء الاصطناعي",
-      "title": "الذكاء الاصطناعي والأتمتة",
-      "desc": "استكشاف النماذج اللغوية، وهندسة الأوامر (Prompt Engineering)، ودمج وكلاء الذكاء الاصطناعي في حلول عملية ومفيدة.",
-      "iconName": "Bot",
-      "order": 4
     }
   ],
   "projects": [
     {
       "id": "easy-convert",
-      "title": "إيزي كونفرت (Easy Convert)",
-      "description": "تطبيق ويب متكامل لتحويل وإدارة ملفات PDF بواجهة استخدام مرنة وسريعة الاستجابة.",
+      "title": "Easy-Convert",
+      "description": "PDF conversion and document utility project.",
       "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80",
       "technologies": [
         "React",
+        "TypeScript",
         "Vite",
-        "Firebase",
-        "JavaScript"
+        "PDF Utility"
       ],
-      "liveUrl": "https://easyconvert.example.com",
-      "githubUrl": "https://github.com",
+      "liveUrl": "",
+      "githubUrl": "https://github.com/Hyyan404/Easy-Convert",
       "featured": true,
       "published": true,
       "order": 1
     },
     {
-      "id": "rased-al-geneh",
-      "title": "راصد الجنيه",
-      "description": "منظومة وتطبيق لمتابعة أسعار صرف العملات في السودان لحظة بلحظة وعرضها في واجهة بيانات ورسوم بيانية مبسطة.",
-      "image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1000&q=80",
+      "id": "portfolio",
+      "title": "Portfolio",
+      "description": "Official personal portfolio and digital identity repository.",
+      "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1000&q=80",
       "technologies": [
-        "تطبيق ويب",
-        "واجهات برمجية API",
-        "JavaScript",
-        "Tailwind CSS"
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Node.js"
       ],
-      "liveUrl": "https://rased.example.com",
-      "githubUrl": "https://github.com",
+      "liveUrl": "",
+      "githubUrl": "https://github.com/hyyan55/Portfolio",
       "featured": true,
       "published": true,
       "order": 2
-    },
-    {
-      "id": "sear-al-geneh",
-      "title": "سعر الجنيه",
-      "description": "منصة ذكية لمتابعة أسعار الصرف ومؤشرات الأسواق المحلية في السودان مع معالجة البيانات وتصنيفها.",
-      "image": "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=1000&q=80",
-      "technologies": [
-        "ويب",
-        "OCR",
-        "معالجة بيانات",
-        "React"
-      ],
-      "liveUrl": "https://sear.example.com",
-      "githubUrl": "https://github.com",
-      "featured": true,
-      "published": true,
-      "order": 3
-    },
-    {
-      "id": "more-projects",
-      "title": "مشاريع ونماذج أولية قادمة",
-      "description": "مجموعة من التجارب الرقمية والحلول في مجالات الذكاء الاصطناعي، التقنيات الطبية، وتطبيقات الويب الحديثة.",
-      "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1000&q=80",
-      "technologies": [
-        "ذكاء اصطناعي",
-        "TypeScript",
-        "Next.js",
-        "تطوير شامل"
-      ],
-      "liveUrl": "https://github.com",
-      "githubUrl": "https://github.com",
-      "featured": false,
-      "published": true,
-      "order": 4
     }
   ],
   "photography": [
     {
-      "id": "photo-kassala-tootil",
-      "title": "جبل توتيل مع شروق الشمس",
-      "category": "كسلا",
+      "id": "photo-tootil-sunrise",
+      "title": "Jabal Tootil Dawn",
+      "category": "Kassala",
       "imageUrl": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
-      "description": "القباب الجرانيتية المهيبة لجبل توتيل تعانق ضباب الصباح الباكر في كسلا بشرق السودان.",
-      "location": "جبل توتيل، كسلا",
+      "description": "Hayyan Mohamed photography in Kassala, Sudan — Morning light touching the granite massifs of Jabal Tootil.",
+      "location": "Jabal Tootil, Kassala, Sudan",
       "cameraInfo": "50mm • f/2.8 • 1/500s • ISO 100",
       "featured": true,
       "published": true,
       "order": 1
     },
     {
-      "id": "photo-nature-mist",
-      "title": "سكينة الساعة الذهبية",
-      "category": "طبيعة",
+      "id": "photo-eastern-horizons",
+      "title": "Eastern Sudan Horizon",
+      "category": "Nature",
       "imageUrl": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80",
-      "description": "ضوء عنبري دافئ يتغلغل بين تضاريس ووديان شرق السودان عند الغروب.",
-      "location": "المنطقة الشرقية",
-      "cameraInfo": "35mm • f/1.8 • 1/250s • ISO 200",
+      "description": "Hayyan Mohamed photography in Kassala, Sudan — Amber gradients settling across the eastern horizons.",
+      "location": "Kassala Province, Sudan",
+      "cameraInfo": "35mm • f/1.8 • 1/320s • ISO 200",
       "featured": true,
       "published": true,
       "order": 2
     },
     {
-      "id": "photo-portrait-expression",
-      "title": "نظرة عزيمة وإصرار",
-      "category": "بورتريه",
-      "imageUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80",
-      "description": "دراسة ضوئية طبيعية تعكس ملامح الشخصية والعمق الإنساني التعبيري.",
-      "location": "استوديو كسلا",
-      "cameraInfo": "85mm • f/1.4 • 1/400s • ISO 100",
+      "id": "photo-architecture-light",
+      "title": "Architectural Geometry",
+      "category": "Architecture",
+      "imageUrl": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1200&q=80",
+      "description": "Hayyan Mohamed photography in Kassala, Sudan — Spatial contrasts, textures, and ambient shadow dynamics.",
+      "location": "Kassala, Sudan",
+      "cameraInfo": "28mm • f/4.0 • 1/400s • ISO 100",
       "featured": true,
       "published": true,
       "order": 3
+    }
+  ],
+  "blog": [
+    {
+      "id": "building-easy-convert-pdf-utility",
+      "slug": "building-easy-convert-pdf-utility",
+      "title": "Building Easy-Convert: Developing a Fast PDF & Document Utility",
+      "description": "Technical insights into building Easy-Convert with React and TypeScript, focusing on privacy-centric document workflows.",
+      "content": "Easy-Convert was built to solve a concrete, everyday problem: fast, lightweight conversion and utility operations on PDF documents. When dealing with sensitive files, privacy and local-first execution are paramount.\n\nIn this article, I discuss the architectural choices made for Easy-Convert, structuring file processing pipelines on the web, and designing an uncluttered user interface that gets out of the user's way.",
+      "author": "Hayyan Mohamed",
+      "date": "2026-09-15",
+      "tags": [
+        "Development",
+        "React",
+        "TypeScript",
+        "Open Source"
+      ],
+      "published": true,
+      "readingTime": "3 min read"
     },
     {
-      "id": "photo-night-stars",
-      "title": "سماء الصحراء وبريق النجوم",
-      "category": "ليلي",
-      "imageUrl": "https://images.unsplash.com/photo-1509773896068-7fd415d91e2e?auto=format&fit=crop&w=1200&q=80",
-      "description": "تصوير فلكي بالتعريض الزمني الطويل يبرز ذراع درب التبانة متلألئاً فوق رمال الصحراء السودانية.",
-      "location": "الصحراء السودانية",
-      "cameraInfo": "24mm • f/2.0 • 20s • ISO 3200",
-      "featured": true,
+      "id": "light-across-kassala-visual-storytelling",
+      "slug": "light-across-kassala-visual-storytelling",
+      "title": "Light Across Kassala: Photography & Visual Storytelling in Eastern Sudan",
+      "description": "Reflections on documenting the granite landscapes of Jabal Tootil and capturing natural ambient light in Kassala.",
+      "content": "Eastern Sudan offers a unique visual landscape. The granite boulders of Jabal Tootil rise directly from the plains, creating dramatic shadows during early morning and late afternoon golden hours.\n\nPhotography teaches a discipline of attention: waiting for the right angle of light, respecting geometric balance, and documenting the character of places honestly. In this piece, I share notes on framing and focal length selection in high-contrast environments.",
+      "author": "Hayyan Mohamed",
+      "date": "2026-09-08",
+      "tags": [
+        "Photography",
+        "Kassala",
+        "Visuals"
+      ],
       "published": true,
-      "order": 4
+      "readingTime": "4 min read"
     },
     {
-      "id": "photo-kassala-bazaar",
-      "title": "ألوان سوق كسلا العريق",
-      "category": "كسلا",
-      "imageUrl": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1200&q=80",
-      "description": "حيوية السوق الشعبي، البهارات، والتراث المعماري الأصيل تحت ظلال العصر.",
-      "location": "السوق الكبير، كسلا",
-      "cameraInfo": "50mm • f/2.0 • 1/320s • ISO 400",
-      "featured": true,
+      "id": "medicine-and-software-engineering",
+      "slug": "medicine-and-software-engineering",
+      "title": "Medicine & Code: Analytical Parallels Between Clinical Thinking and Engineering",
+      "description": "How medical diagnostic discipline and systematic software engineering complement one another in problem-solving.",
+      "content": "Studying medicine and writing code share a common foundation: systematic diagnosis and structured thinking. In clinical medicine, one gathers symptoms, identifies underlying pathophysiological mechanisms, and devises targeted treatment plans. In software engineering, debugging follows an identical heuristic.\n\nBalancing medical education with development cultivates both analytical rigor and creative problem-solving.",
+      "author": "Hayyan Mohamed",
+      "date": "2026-08-28",
+      "tags": [
+        "Medicine",
+        "Technology",
+        "Perspective"
+      ],
       "published": true,
-      "order": 5
-    },
-    {
-      "id": "photo-street-motion",
-      "title": "إيقاع المدينة بالأبيض والأسود",
-      "category": "شارع",
-      "imageUrl": "https://images.unsplash.com/photo-1477959858617-67f30bc75b82?auto=format&fit=crop&w=1200&q=80",
-      "description": "لقطة عفوية تلتقط انسيابية الحركة وتناغم الضوء والظلال في الشارع الحيوي.",
-      "location": "وسط المدينة",
-      "cameraInfo": "28mm • f/4.0 • 1/800s • ISO 200",
-      "featured": false,
-      "published": true,
-      "order": 6
+      "readingTime": "4 min read"
     }
   ],
   "skills": [
     {
-      "id": "dev-html",
-      "name": "HTML5",
-      "group": "البرمجة والتطوير",
+      "id": "skill-web",
+      "name": "Web Development",
+      "group": "Development",
       "iconName": "Code2",
       "order": 1
     },
     {
-      "id": "dev-css",
-      "name": "CSS3 و Tailwind",
-      "group": "البرمجة والتطوير",
-      "iconName": "Palette",
+      "id": "skill-react",
+      "name": "React & TypeScript",
+      "group": "Development",
+      "iconName": "Atom",
       "order": 2
     },
     {
-      "id": "dev-js",
-      "name": "JavaScript (ES6+)",
-      "group": "البرمجة والتطوير",
-      "iconName": "FileCode",
+      "id": "skill-tailwind",
+      "name": "Tailwind CSS & Vite",
+      "group": "Development",
+      "iconName": "Zap",
       "order": 3
     },
     {
-      "id": "dev-react",
-      "name": "React",
-      "group": "البرمجة والتطوير",
-      "iconName": "Atom",
+      "id": "skill-git",
+      "name": "Git & GitHub",
+      "group": "Development",
+      "iconName": "Github",
       "order": 4
     },
     {
-      "id": "dev-vite",
-      "name": "Vite",
-      "group": "البرمجة والتطوير",
-      "iconName": "Zap",
+      "id": "skill-photo",
+      "name": "Photography & Composition",
+      "group": "Creative",
+      "iconName": "Camera",
       "order": 5
     },
     {
-      "id": "dev-firebase",
-      "name": "Firebase",
-      "group": "البرمجة والتطوير",
-      "iconName": "Flame",
+      "id": "skill-post",
+      "name": "Image Post-Processing",
+      "group": "Creative",
+      "iconName": "Sliders",
       "order": 6
     },
     {
-      "id": "dev-git",
-      "name": "Git",
-      "group": "البرمجة والتطوير",
-      "iconName": "GitBranch",
+      "id": "skill-clinical",
+      "name": "Clinical Sciences",
+      "group": "Medical",
+      "iconName": "Stethoscope",
       "order": 7
     },
     {
-      "id": "dev-github",
-      "name": "GitHub",
-      "group": "البرمجة والتطوير",
-      "iconName": "Github",
-      "order": 8
-    },
-    {
-      "id": "cr-photo",
-      "name": "التصوير الفوتوغرافي",
-      "group": "الإبداع والتصميم",
-      "iconName": "Camera",
-      "order": 9
-    },
-    {
-      "id": "cr-editing",
-      "name": "تعديل ومعالجة الصور (Lightroom/PS)",
-      "group": "الإبداع والتصميم",
-      "iconName": "Sliders",
-      "order": 10
-    },
-    {
-      "id": "cr-ui",
-      "name": "تصميم واجهات المستخدم UI/UX",
-      "group": "الإبداع والتصميم",
-      "iconName": "Layout",
-      "order": 11
-    },
-    {
-      "id": "cr-video",
-      "name": "مونتاج الفيديو",
-      "group": "الإبداع والتصميم",
-      "iconName": "Film",
-      "order": 12
-    },
-    {
-      "id": "ai-tools",
-      "name": "أدوات ونماذج الذكاء الاصطناعي",
-      "group": "الذكاء الاصطناعي والتقنية",
-      "iconName": "Cpu",
-      "order": 13
-    },
-    {
-      "id": "ai-prompt",
-      "name": "هندسة الأوامر (Prompt Engineering)",
-      "group": "الذكاء الاصطناعي والتقنية",
-      "iconName": "Sparkles",
-      "order": 14
-    },
-    {
-      "id": "ai-dev",
-      "name": "التطوير بمساعدة الذكاء الاصطناعي",
-      "group": "الذكاء الاصطناعي والتقنية",
-      "iconName": "Bot",
-      "order": 15
-    },
-    {
-      "id": "med-studies",
-      "name": "دراسة الطب والعلوم السريرية",
-      "group": "الطب والعلوم الصحية",
-      "iconName": "Stethoscope",
-      "order": 16
-    },
-    {
-      "id": "med-research",
-      "name": "البحث العلمي الطبي",
-      "group": "الطب والعلوم الصحية",
+      "id": "skill-research",
+      "name": "Medical Research",
+      "group": "Medical",
       "iconName": "BookOpen",
-      "order": 17
-    },
-    {
-      "id": "med-writing",
-      "name": "الكتابة والتوثيق الأكاديمي",
-      "group": "الطب والعلوم الصحية",
-      "iconName": "FileText",
-      "order": 18
+      "order": 8
     }
   ],
   "journey": [
     {
-      "id": "journey-med-2026",
-      "year": "2026",
-      "title": "طالب طب بشري",
-      "institution": "جامعة العلوم والتقانة بالشرق — كسلا، السودان",
-      "description": "مواصلة التحصيل الأكاديمي والسريري والبحث في تقنيات الرعاية الصحية الحديثة والابتكار الطبي.",
+      "id": "journey-med",
+      "year": "Present",
+      "title": "Medical Studies",
+      "institution": "Kassala, Sudan",
+      "description": "Pursuing clinical medical education with an emphasis on systematic healthcare and diagnostic skills.",
       "order": 1
     },
     {
-      "id": "journey-web-2026",
-      "year": "2026",
-      "title": "تطوير تطبيقات ومواقع الويب",
-      "institution": "مشاريع مستقلة ومفتوحة المصدر",
-      "description": "بناء تطبيقات ويب تفاعلية حديثة تلبي الاحتياجات الرقمية والمحلية بأحدث تقنيات الويب السريعة.",
+      "id": "journey-dev",
+      "year": "Present",
+      "title": "Software & Web Development",
+      "institution": "Open Source & Web Projects",
+      "description": "Creating practical web applications and utilities such as Easy-Convert, leveraging modern web frameworks.",
       "order": 2
     },
     {
-      "id": "journey-photo-2026",
-      "year": "2026",
-      "title": "التصوير الفوتوغرافي والسرد البصري",
-      "institution": "ممارسة إبداعية وتوثيقية",
-      "description": "توثيق المعالم الطبيعية والتراث الإنساني لمدينة كسلا وربوع السودان بعدسة فنية معبّرة.",
+      "id": "journey-photo",
+      "year": "Present",
+      "title": "Photography & Visual Documentation",
+      "institution": "Kassala, Sudan",
+      "description": "Documenting urban landscapes, natural light patterns, and the architectural character of Kassala.",
       "order": 3
     }
   ],
   "stats": [
     {
       "id": "stat-projects",
-      "label": "مشاريع مميزة",
-      "value": "+3",
-      "description": "تطبيقات ويب ونماذج رقمية",
+      "label": "Featured Projects",
+      "value": "2+",
+      "description": "Easy-Convert & Portfolio",
       "order": 1
     },
     {
-      "id": "stat-interests",
-      "label": "مجالات شغف",
-      "value": "4",
-      "description": "الطب، البرمجة، التصوير، الذكاء الاصطناعي",
+      "id": "stat-focus",
+      "label": "Core Disciplines",
+      "value": "3",
+      "description": "Developer, Medical Student, Photographer",
       "order": 2
     },
     {
-      "id": "stat-medical",
-      "label": "المسيرة الطبية",
-      "value": "1",
-      "description": "شغف بالعلوم السريرية",
+      "id": "stat-location",
+      "label": "Base Location",
+      "value": "Kassala",
+      "description": "Sudan",
       "order": 3
-    },
-    {
-      "id": "stat-ideas",
-      "label": "أفكار واستكشافات",
-      "value": "∞",
-      "description": "ابتكار وتعلّم بلا حدود",
-      "order": 4
     }
   ],
   "socials": [
     {
-      "id": "social-whatsapp",
-      "platform": "WhatsApp",
-      "label": "واتساب (WhatsApp)",
-      "url": "https://wa.me/249912345678",
-      "active": true
-    },
-    {
-      "id": "social-instagram",
-      "platform": "Instagram",
-      "label": "انستغرام (Instagram)",
-      "url": "https://instagram.com",
-      "active": true
-    },
-    {
-      "id": "social-tiktok",
-      "platform": "TikTok",
-      "label": "تيك توك (TikTok)",
-      "url": "https://tiktok.com",
-      "active": true
-    },
-    {
       "id": "social-github",
       "platform": "GitHub",
-      "label": "جيت هاب (GitHub)",
-      "url": "https://github.com",
+      "label": "GitHub (@hyyan55)",
+      "url": "https://github.com/hyyan55",
       "active": true
     },
     {
       "id": "social-email",
       "platform": "Email",
-      "label": "البريد الإلكتروني",
-      "url": "mailto:hayyan@example.com",
+      "label": "Email",
+      "url": "mailto:hyyanmohamed55@gmail.com",
       "active": true
     },
     {
       "id": "social-linkedin",
       "platform": "LinkedIn",
-      "label": "لينكد إن (LinkedIn)",
+      "label": "LinkedIn",
       "url": "https://linkedin.com",
       "active": false
     },
     {
-      "id": "social-youtube",
-      "platform": "YouTube",
-      "label": "يوتيوب (YouTube)",
-      "url": "https://youtube.com",
+      "id": "social-instagram",
+      "platform": "Instagram",
+      "label": "Instagram",
+      "url": "https://instagram.com",
+      "active": false
+    },
+    {
+      "id": "social-tiktok",
+      "platform": "TikTok",
+      "label": "TikTok",
+      "url": "https://tiktok.com",
+      "active": false
+    },
+    {
+      "id": "social-whatsapp",
+      "platform": "WhatsApp",
+      "label": "WhatsApp",
+      "url": "https://wa.me/249912345678",
       "active": false
     }
   ],
-  "messages": [
-    {
-      "id": "msg-welcome-1",
-      "name": "نظام الموقع",
-      "email": "system@hayyanmohamed.me",
-      "subject": "مرحباً بك في لوحة تحكم موقعك الشخصي",
-      "message": "أهلاً بك حيان! تم تفعيل موقعك الشخصي ولوحة التحكم باللغة العربية بنجاح، ويمكنك إدارة المحتوى وتلقي الرسائل هنا بكل سهولة.",
-      "read": false,
-      "createdAt": "2026-09-18T10:11:27.623Z"
-    }
-  ],
+  "messages": [],
   "settings": {
-    "siteTitle": "حيان محمد — طالب طب، مطور برمجيات ومصور فوتوغرافي",
-    "metaDescription": "الموقع الشخصي الرسمي لحيان محمد — طالب طب، مطور ويب وتطبيقات، مصور فوتوغرافي وشغوف بالذكاء الاصطناعي من السودان.",
-    "logoText": "حيان",
-    "profileImage": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+    "siteTitle": "Hayyan Mohamed | Sudanese Developer, Medical Student & Photographer",
+    "metaDescription": "Official website of Hayyan Mohamed (حيان محمد), a Sudanese developer, medical student and photographer based in Kassala, Sudan. Explore his projects, portfolio and photography.",
+    "logoText": "Hayyan Mohamed",
+    "githubUsername": "hyyan55",
+    "githubPortfolioRepo": "https://github.com/hyyan55/Portfolio",
+    "profileImage": "/avatar.svg",
     "accentColor": "#38BDF8",
     "darkModeDefault": true,
-    "showWhatsAppButton": true,
+    "showWhatsAppButton": false,
     "showPhotographySection": true,
     "showProjectsSection": true,
     "showSkillsSection": true,
     "showJourneySection": true,
     "showStatsSection": true,
-    "whatsAppNumber": "+249912345678",
-    "whatsappNumber": "+249912345678",
-    "whatsAppMessage": "مرحباً حيان، اطلعت على موقعك وأود التواصل معك.",
-    "whatsappDefaultMessage": "مرحباً حيان، اطلعت على موقعك وأود التواصل معك.",
-    "footerText": "© 2026 حيان محمد. جميع الحقوق محفوظة.",
-    "footerCopyright": "© 2026 حيان محمد. تم البناء بإتقان وعناية.",
-    "footerSubtitle": "طالب طب • مطور برمجيات • مصور فوتوغرافي • كسلا، السودان",
-    "contactEmail": "hayyan@example.com",
-    "contactLocationText": "كسلا، السودان"
+    "showBlogSection": true,
+    "whatsAppNumber": "",
+    "footerText": "© 2026 Hayyan Mohamed. All rights reserved.",
+    "footerSubtitle": "Sudanese Developer, Medical Student & Photographer • Kassala, Sudan",
+    "contactEmail": "hyyanmohamed55@gmail.com",
+    "contactLocationText": "Kassala, Sudan"
   },
   "activityLog": [
     {
-      "id": "act-1",
-      "action": "تهيئة قاعدة البيانات باللغة العربية",
-      "timestamp": "2026-09-18T10:11:27.623Z"
+      "id": "act-init",
+      "action": "Initialized official website database for Hayyan Mohamed",
+      "timestamp": "2026-09-20T14:10:00.000Z"
     }
   ]
 }

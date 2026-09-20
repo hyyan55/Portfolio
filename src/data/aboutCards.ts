@@ -2,35 +2,28 @@ import { AboutCard } from '../types';
 
 export const initialAboutCards: AboutCard[] = [
   {
-    id: "card-med",
-    badge: "🎓 طالب طب",
-    title: "الطب والعلوم السريرية",
-    desc: "دراسة الطب والعلوم الصحية في جامعة العلوم والتقانة بالشرق بكسلا، مع شغف عميق بالعلوم السريرية وربطها بالتقنيات الصحية الحديثة.",
-    iconName: "GraduationCap",
+    id: "card-dev",
+    badge: "Developer",
+    title: "Software & Web Development",
+    desc: "Developing functional web tools, modern user interfaces, and document utilities with React, TypeScript, and clean modular code.",
+    iconName: "Code2",
     order: 1
   },
   {
-    id: "card-dev",
-    badge: "💻 مطور برمجيات",
-    title: "هندسة الويب والتطبيقات",
-    desc: "بناء تطبيقات وأدوات رقمية عصرية، سريعة وسلسة باستخدام React و Vite و Tailwind CSS مع معايير برمجية نظيفة.",
-    iconName: "Code2",
+    id: "card-med",
+    badge: "Medical Student",
+    title: "Medical Studies",
+    desc: "Pursuing medicine with a keen interest in clinical science, healthcare technologies, and algorithmic problem-solving.",
+    iconName: "Stethoscope",
     order: 2
   },
   {
     id: "card-photo",
-    badge: "📸 مصور فوتوغرافي",
-    title: "السرد البصري والتوثيق",
-    desc: "توثيق جمال الطبيعة السودانية، تفاصيل جبل توتيل وقت الشروق، ولحظات الحياة الأصيلة في شوارع وأسواق كسلا.",
+    badge: "Photographer",
+    title: "Photography & Visuals",
+    desc: "Capturing architectural forms, golden-hour landscapes around Kassala and Jabal Tootil, and expressive documentary moments.",
     iconName: "Camera",
     order: 3
-  },
-  {
-    id: "card-ai",
-    badge: "🤖 شغوف بالذكاء الاصطناعي",
-    title: "الذكاء الاصطناعي والأتمتة",
-    desc: "استكشاف النماذج اللغوية، وهندسة الأوامر (Prompt Engineering)، ودمج وكلاء الذكاء الاصطناعي في حلول عملية ومفيدة.",
-    iconName: "Bot",
-    order: 4
   }
 ];
+

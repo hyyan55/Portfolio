@@ -1,0 +1,16 @@
+{
+  "name": "Hayyan Mohamed | Official Website",
+  "short_name": "Hayyan Mohamed",
+  "description": "Official website of Hayyan Mohamed (حيان محمد), Sudanese developer, medical student, and photographer based in Kassala, Sudan.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#0A0A0A",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

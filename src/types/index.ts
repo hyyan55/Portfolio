@@ -1,15 +1,31 @@
 export interface Profile {
   name: string;
-  titles: string[]; // e.g. ["Medical Student", "Developer", "Photographer", "AI Enthusiast"]
-  heroGreeting: string; // e.g. "Hi, I'm Hayyan Mohamed"
-  heroDescription: string; // "Building digital experiences, exploring technology, and capturing moments through photography."
-  locationBadge: string; // "Based in Kassala, Sudan 🇸🇩"
+  arabicName?: string;
+  alternateNames?: string[];
+  titles: string[]; // e.g. ["Sudanese Developer", "Medical Student", "Photographer"]
+  heroGreeting: string; // e.g. "Hayyan Mohamed"
+  heroDescription: string; // "Welcome to the official website of Hayyan Mohamed, a Sudanese developer, medical student and photographer based in Kassala, Sudan."
+  locationBadge: string; // "Kassala, Sudan 🇸🇩"
   aboutIntro: string; // Main introductory text
   aboutBio: string; // Extended bio
   avatarUrl: string;
   heroFloatingTagline?: string;
   heroCtaWorkText?: string;
   heroCtaContactText?: string;
+}
+
+export interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  content: string;
+  author: string;
+  date: string;
+  tags: string[];
+  coverImage?: string;
+  published: boolean;
+  readingTime?: string;
 }
 
 export interface AboutCard {
@@ -108,6 +124,9 @@ export interface SiteSettings {
   showSkillsSection: boolean;
   showJourneySection: boolean;
   showStatsSection: boolean;
+  showBlogSection?: boolean;
+  githubUsername?: string;
+  githubPortfolioRepo?: string;
   whatsAppNumber: string;
   whatsAppMessage?: string;
   whatsappNumber?: string;

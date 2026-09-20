@@ -6,6 +6,7 @@ export interface DatabaseSchema {
   aboutCards?: any[];
   projects: any[];
   photography: any[];
+  blog?: any[];
   skills: any[];
   journey: any[];
   stats: any[];
@@ -315,6 +316,9 @@ export function getDb(): DatabaseSchema {
         if (parsed && typeof parsed === 'object' && parsed.profile) {
           if (!parsed.aboutCards || !Array.isArray(parsed.aboutCards)) {
             parsed.aboutCards = loadInitialData().aboutCards;
+          }
+          if (!parsed.blog || !Array.isArray(parsed.blog)) {
+            parsed.blog = [];
           }
           if (!parsed.settings) {
             parsed.settings = loadInitialData().settings;

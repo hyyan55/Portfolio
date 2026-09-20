@@ -1,17 +1,22 @@
 import { Profile } from '../types';
 
 export const initialProfile: Profile = {
-  name: "حيان محمد",
+  name: "Hayyan Mohamed",
+  arabicName: "حيان محمد",
+  alternateNames: ["حيان محمد", "Hayyan Mohammed", "Hyyan Mohamed"],
   titles: [
-    "طالب طب بشري",
-    "مطور ويب وتطبيقات",
-    "مصور فوتوغرافي",
-    "شغوف بالذكاء الاصطناعي والتقنية"
+    "Sudanese Developer",
+    "Medical Student",
+    "Photographer"
   ],
-  heroGreeting: "مرحباً، أنا حيان محمد",
-  heroDescription: "أبني تجارب رقمية متميزة، أستكشف آفاق التقنية والذكاء الاصطناعي، وأوثق جمال اللحظات بعدستي.",
-  locationBadge: "كسلا، السودان 🇸🇩",
-  aboutIntro: "أهلاً بك! أنا حيان محمد، طالب طب بشري من السودان، أجمع بين العلوم السريرية والطبية وشغفي العميق بهندسة البرمجيات، فن التصوير الفوتوغرافي، واستخدامات الذكاء الاصطناعي.",
-  aboutBio: "أستمتع ببناء منتجات رقمية مفيدة، وتعلّم التقنيات الحديثة، وتحويل الأفكار إلى مشاريع واقعية تخدم المجتمع. إلى جانب دراستي الطبية، أعتبر البرمجة والتصوير مساحتين للإبداع والابتكار والتطوير المستمر.",
-  avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+  heroGreeting: "Hayyan Mohamed",
+  heroDescription: "Welcome to the official website of Hayyan Mohamed, a Sudanese developer, medical student and photographer based in Kassala, Sudan.",
+  locationBadge: "Kassala, Sudan",
+  aboutIntro: "طالب طب ومطور يهتم بتطوير التطبيقات والمواقع والمشاريع التقنية، مع اهتمام بالتصوير والمحتوى البصري.",
+  aboutBio: "Hayyan Mohamed (حيان محمد) is a Sudanese developer, medical student, and visual photographer based in Kassala, Sudan. Focused on building high-performance web applications, utility tools, and capturing visual moments with careful optical composition.",
+  avatarUrl: "/avatar.svg",
+  heroFloatingTagline: "Kassala, Sudan",
+  heroCtaWorkText: "View Projects",
+  heroCtaContactText: "Contact"
 };
+

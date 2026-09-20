@@ -44,36 +44,28 @@ export const About: React.FC = () => {
 
   const cardsToDisplay = aboutCards && aboutCards.length > 0 ? aboutCards : [
     {
-      id: "card-med",
-      badge: "🎓 Medical Student",
-      title: "Medicine & Clinical Science",
-      desc: "Studying at East of Science & Technology University in Kassala, focused on pathology, clinical reasoning, and health systems.",
-      iconName: "GraduationCap",
+      id: "card-dev",
+      badge: "Developer",
+      title: "Software & Web Development",
+      desc: "Developing functional web tools, modern user interfaces, and document utilities with React, TypeScript, and clean modular code.",
+      iconName: "Code2",
       order: 1
     },
     {
-      id: "card-dev",
-      badge: "💻 Developer",
-      title: "Web & App Engineering",
-      desc: "Crafting modern, lightweight, accessible digital tools with React, Vite, Tailwind CSS, and clean full-stack patterns.",
-      iconName: "Code2",
+      id: "card-med",
+      badge: "Medical Student",
+      title: "Medical Studies",
+      desc: "Pursuing medicine with a keen interest in clinical science, healthcare technologies, and algorithmic problem-solving.",
+      iconName: "Stethoscope",
       order: 2
     },
     {
       id: "card-photo",
-      badge: "📸 Photographer",
-      title: "Visual Storytelling",
-      desc: "Documenting Sudanese landscapes, natural textures, Jabal Tootil at sunrise, and authentic street moments through purposeful framing.",
+      badge: "Photographer",
+      title: "Photography & Visuals",
+      desc: "Capturing architectural forms, golden-hour landscapes around Kassala and Jabal Tootil, and expressive documentary moments.",
       iconName: "Camera",
       order: 3
-    },
-    {
-      id: "card-ai",
-      badge: "🤖 AI Enthusiast",
-      title: "Applied AI & Automation",
-      desc: "Exploring prompt engineering, intelligent agent workflows, and integrating modern AI models into practical tools.",
-      iconName: "Bot",
-      order: 4
     }
   ];
 

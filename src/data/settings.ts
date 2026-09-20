@@ -1,25 +1,29 @@
 import { SiteSettings } from '../types';
 
 export const initialSettings: SiteSettings = {
-  siteTitle: "حيان محمد — طالب طب، مطور برمجيات ومصور فوتوغرافي",
-  metaDescription: "الموقع الشخصي الرسمي لحيان محمد — طالب طب، مطور ويب وتطبيقات، مصور فوتوغرافي وشغوف بالذكاء الاصطناعي من السودان.",
-  logoText: "حيان",
-  profileImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+  siteTitle: "Hayyan Mohamed | Sudanese Developer, Medical Student & Photographer",
+  metaDescription: "Official website of Hayyan Mohamed (حيان محمد), a Sudanese developer, medical student and photographer based in Kassala, Sudan. Explore his projects, portfolio and photography.",
+  logoText: "Hayyan Mohamed",
+  githubUsername: "hyyan55",
+  githubPortfolioRepo: "https://github.com/hyyan55/Portfolio",
+  profileImage: "/avatar.svg",
   accentColor: "#38BDF8",
   darkModeDefault: true,
-  showWhatsAppButton: true,
+  showWhatsAppButton: false,
   showPhotographySection: true,
   showProjectsSection: true,
   showSkillsSection: true,
   showJourneySection: true,
   showStatsSection: true,
-  whatsAppNumber: "+249912345678",
-  whatsappNumber: "+249912345678",
-  whatsAppMessage: "مرحباً حيان، اطلعت على موقعك وأود التواصل معك.",
-  whatsappDefaultMessage: "مرحباً حيان، اطلعت على موقعك وأود التواصل معك.",
-  footerText: "© 2026 حيان محمد. جميع الحقوق محفوظة.",
-  footerCopyright: "© 2026 حيان محمد. تم البناء بإتقان وعناية.",
-  footerSubtitle: "طالب طب • مطور برمجيات • مصور فوتوغرافي • كسلا، السودان",
-  contactEmail: "hayyan@example.com",
-  contactLocationText: "كسلا، السودان"
+  showBlogSection: true,
+  whatsAppNumber: "",
+  whatsappNumber: "",
+  whatsAppMessage: "Hello Hayyan, I reached out through your website.",
+  whatsappDefaultMessage: "Hello Hayyan, I reached out through your website.",
+  footerText: "© 2026 Hayyan Mohamed. All rights reserved.",
+  footerCopyright: "© 2026 Hayyan Mohamed. All rights reserved.",
+  footerSubtitle: "Sudanese Developer, Medical Student & Photographer • Kassala, Sudan",
+  contactEmail: "hyyanmohamed55@gmail.com",
+  contactLocationText: "Kassala, Sudan"
 };
+

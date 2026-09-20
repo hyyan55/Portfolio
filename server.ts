@@ -196,6 +196,72 @@ async function startServer() {
     res.json({ success: true });
   });
 
+  // Blog / Articles
+  app.get('/api/blog', (req: Request, res: Response) => {
+    const db = getDb();
+    const blog = db.blog || [];
+    if (req.query.all === 'true') {
+      return res.json(blog);
+    }
+    const published = blog.filter((b: any) => b.published);
+    res.json(published);
+  });
+
+  app.get('/api/blog/:slugOrId', (req: Request, res: Response) => {
+    const db = getDb();
+    const blog = db.blog || [];
+    const item = blog.find((b: any) => b.slug === req.params.slugOrId || b.id === req.params.slugOrId);
+    if (!item) {
+      return res.status(404).json({ error: 'Article not found' });
+    }
+    res.json(item);
+  });
+
+  app.post('/api/blog', requireAdmin, (req: Request, res: Response) => {
+    const db = getDb();
+    if (!db.blog) db.blog = [];
+    const newPost = {
+      id: req.body.id || `blog-${Date.now()}`,
+      slug: req.body.slug || (req.body.title || 'untitled').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+      title: req.body.title || 'Untitled Article',
+      description: req.body.description || '',
+      content: req.body.content || '',
+      author: 'Hayyan Mohamed',
+      date: req.body.date || new Date().toISOString().split('T')[0],
+      tags: Array.isArray(req.body.tags) ? req.body.tags : ['General'],
+      coverImage: req.body.coverImage || '',
+      published: req.body.published !== undefined ? Boolean(req.body.published) : true,
+      readingTime: req.body.readingTime || '3 min read'
+    };
+    db.blog.unshift(newPost);
+    saveDb(db);
+    logActivity(`Published new blog article: ${newPost.title}`);
+    res.status(201).json(newPost);
+  });
+
+  app.put('/api/blog/:id', requireAdmin, (req: Request, res: Response) => {
+    const db = getDb();
+    if (!db.blog) db.blog = [];
+    const index = db.blog.findIndex((b: any) => b.id === req.params.id);
+    if (index === -1) {
+      return res.status(404).json({ error: 'Article not found' });
+    }
+    db.blog[index] = { ...db.blog[index], ...req.body };
+    saveDb(db);
+    logActivity(`Updated blog article: ${db.blog[index].title}`);
+    res.json(db.blog[index]);
+  });
+
+  app.delete('/api/blog/:id', requireAdmin, (req: Request, res: Response) => {
+    const db = getDb();
+    if (!db.blog) db.blog = [];
+    const post = db.blog.find((b: any) => b.id === req.params.id);
+    db.blog = db.blog.filter((b: any) => b.id !== req.params.id);
+    saveDb(db);
+    logActivity(`Deleted blog article: ${post?.title || req.params.id}`);
+    res.json({ success: true });
+  });
+
   // Skills
   app.get('/api/skills', (req: Request, res: Response) => {
     const db = getDb();
@@ -405,6 +471,7 @@ async function startServer() {
       if (Array.isArray(payload.aboutCards)) db.aboutCards = payload.aboutCards;
       if (Array.isArray(payload.projects)) db.projects = payload.projects;
       if (Array.isArray(payload.photography)) db.photography = payload.photography;
+      if (Array.isArray(payload.blog)) db.blog = payload.blog;
       if (Array.isArray(payload.skills)) db.skills = payload.skills;
       if (Array.isArray(payload.journey)) db.journey = payload.journey;
       if (Array.isArray(payload.stats)) db.stats = payload.stats;
@@ -440,6 +507,7 @@ async function startServer() {
       if (Array.isArray(imported.aboutCards)) db.aboutCards = imported.aboutCards;
       if (Array.isArray(imported.projects)) db.projects = imported.projects;
       if (Array.isArray(imported.photography)) db.photography = imported.photography;
+      if (Array.isArray(imported.blog)) db.blog = imported.blog;
       if (Array.isArray(imported.skills)) db.skills = imported.skills;
       if (Array.isArray(imported.journey)) db.journey = imported.journey;
       if (Array.isArray(imported.stats)) db.stats = imported.stats;
@@ -453,6 +521,25 @@ async function startServer() {
       console.error("Import error:", err);
       res.status(500).json({ error: 'Failed to import backup: ' + (err.message || 'Invalid format') });
     }
+  });
+
+  // SEO: Sitemap & Robots endpoints
+  app.get('/robots.txt', (req: Request, res: Response) => {
+    const robotsPath = path.join(process.cwd(), 'public', 'robots.txt');
+    if (path.resolve(robotsPath)) {
+      res.type('text/plain');
+      return res.sendFile(robotsPath);
+    }
+    res.type('text/plain').send("User-agent: *\nAllow: /\nDisallow: /admin\nSitemap: https://hayyanmohamed.me/sitemap.xml");
+  });
+
+  app.get('/sitemap.xml', (req: Request, res: Response) => {
+    const sitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+    if (path.resolve(sitemapPath)) {
+      res.type('application/xml');
+      return res.sendFile(sitemapPath);
+    }
+    res.status(404).send('Sitemap not found');
   });
 
   // --- VITE MIDDLEWARE SETUP ---
