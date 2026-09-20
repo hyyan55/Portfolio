@@ -1,5 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
+import fs from 'fs';
 import { createServer as createViteServer } from 'vite';
 import { verifyAdminCredentials, generateToken, verifyToken, ADMIN_USERNAME } from './server/auth';
 import { getDb, saveDb, logActivity } from './server/db';
@@ -523,6 +524,49 @@ async function startServer() {
     }
   });
 
+  // Admin Image Upload Endpoint (stores images in /public/uploads/)
+  app.post('/api/upload', requireAdmin, (req: Request, res: Response) => {
+    try {
+      const { image, name } = req.body;
+      if (!image || typeof image !== 'string') {
+        return res.status(400).json({ error: 'Valid image string is required' });
+      }
+
+      let base64Data = image;
+      let ext = 'jpg';
+
+      const match = image.match(/^data:image\/([a-zA-Z0-9+]+);base64,(.+)$/);
+      if (match) {
+        ext = match[1].toLowerCase() === 'jpeg' ? 'jpg' : match[1].toLowerCase();
+        if (ext.includes('svg')) ext = 'svg';
+        else if (ext.includes('png')) ext = 'png';
+        else if (ext.includes('webp')) ext = 'webp';
+        else ext = 'jpg';
+        base64Data = match[2];
+      }
+
+      const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
+      if (!fs.existsSync(uploadsDir)) {
+        fs.mkdirSync(uploadsDir, { recursive: true });
+      }
+
+      const cleanName = (name || 'image')
+        .replace(/[^a-zA-Z0-9_-]/g, '_')
+        .slice(0, 30);
+      const filename = `${cleanName}-${Date.now()}.${ext}`;
+      const filePath = path.join(uploadsDir, filename);
+
+      fs.writeFileSync(filePath, Buffer.from(base64Data, 'base64'));
+
+      const publicUrl = `/uploads/${filename}`;
+      logActivity(`Uploaded image: ${filename}`);
+      return res.json({ success: true, url: publicUrl, filename });
+    } catch (err: any) {
+      console.error('Upload error:', err);
+      return res.status(500).json({ error: 'Failed to save image: ' + (err.message || 'Unknown error') });
+    }
+  });
+
   // SEO: Sitemap & Robots endpoints
   app.get('/robots.txt', (req: Request, res: Response) => {
     const robotsPath = path.join(process.cwd(), 'public', 'robots.txt');
@@ -541,6 +585,9 @@ async function startServer() {
     }
     res.status(404).send('Sitemap not found');
   });
+
+  // Serve public assets directly
+  app.use(express.static(path.join(process.cwd(), 'public')));
 
   // --- VITE MIDDLEWARE SETUP ---
   if (process.env.NODE_ENV !== 'production') {

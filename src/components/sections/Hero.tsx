@@ -82,10 +82,11 @@ export const Hero: React.FC = () => {
 
               <div className="relative rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-2xl">
                 <img
-                  src={profile.avatarUrl}
+                  src={profile.avatarUrl || '/avatar.jpg'}
                   alt={profile.name}
-                  className="w-full h-84 sm:h-96 object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                  className="w-full h-84 sm:h-96 object-cover object-center transition-all duration-500 group-hover:scale-105"
                   loading="eager"
+                  referrerPolicy="no-referrer"
                 />
                 
                 {/* Floating overlay badge */}

@@ -7,7 +7,7 @@ import { compressImageFile } from '../../../utils/imageCompressor';
 import { ConfirmModal } from '../../../components/common/ConfirmModal';
 
 export const PhotographyTab: React.FC = () => {
-  const { photography, addPhoto, updatePhoto, deletePhoto } = useData();
+  const { photography, addPhoto, updatePhoto, deletePhoto, uploadImage } = useData();
   const { showToast } = useToast();
   const [editingPhoto, setEditingPhoto] = useState<PhotographyItem | null>(null);
   const [isCreating, setIsCreating] = useState(false);
@@ -65,11 +65,15 @@ export const PhotographyTab: React.FC = () => {
     if (file) {
       try {
         setIsCompressing(true);
-        const compressedBase64 = await compressImageFile(file, 1280, 1280, 0.80);
-        setForm(prev => ({ ...prev, imageUrl: compressedBase64 }));
-        showToast("Photo processed and ready to save.", "info");
+        const uploadedUrl = await uploadImage(file, 'photo');
+        if (uploadedUrl) {
+          setForm(prev => ({ ...prev, imageUrl: uploadedUrl }));
+          showToast("Photo uploaded and ready to save.", "info");
+        } else {
+          showToast("Failed to upload photo file.", "error");
+        }
       } catch (err) {
-        console.error("Compression error:", err);
+        console.error("Upload error:", err);
         showToast("Failed to process photo file.", "error");
       } finally {
         setIsCompressing(false);

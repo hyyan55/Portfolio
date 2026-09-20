@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
 import {
   Profile,
   AboutCard,
@@ -23,8 +23,9 @@ import { initialSocials } from '../data/socials';
 import { initialSettings } from '../data/settings';
 import { useAuth } from './AuthContext';
 import { useToast } from './ToastContext';
+import { compressImageFile } from '../utils/imageCompressor';
 
-const STORAGE_KEY = 'hayyan_portfolio_storage_v4';
+const STORAGE_KEY = 'hayyan_portfolio_storage_v6';
 
 interface AdminStats {
   totalProjects: number;
@@ -89,6 +90,7 @@ interface DataContextType {
   syncAllData: () => Promise<boolean>;
   exportBackup: () => void;
   importBackup: (backupData: any) => Promise<boolean>;
+  uploadImage: (imageFileOrBase64: File | string, name?: string) => Promise<string | null>;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -111,7 +113,15 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   const cached = getCachedData();
 
-  const [profile, setProfile] = useState<Profile>(cached?.profile || initialProfile);
+  const [profile, setProfile] = useState<Profile>(() => {
+    if (cached?.profile) {
+      if (cached.profile.avatarUrl === '/avatar.svg' || !cached.profile.avatarUrl) {
+        return { ...cached.profile, avatarUrl: initialProfile.avatarUrl };
+      }
+      return cached.profile;
+    }
+    return initialProfile;
+  });
   const [aboutCards, setAboutCards] = useState<AboutCard[]>(cached?.aboutCards || initialAboutCards);
   const [projects, setProjects] = useState<Project[]>(cached?.projects || initialProjects);
   const [photography, setPhotography] = useState<PhotographyItem[]>(cached?.photography || initialPhotography);
@@ -134,30 +144,50 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     return null;
   }, [contextToken]);
 
-  // Persist all working state to localStorage
+  // Store a mutable reference to latest state so cache saves never depend on state closures
+  const stateRef = useRef({
+    profile,
+    aboutCards,
+    projects,
+    photography,
+    blog,
+    skills,
+    journey,
+    stats,
+    socials,
+    settings
+  });
+
+  useEffect(() => {
+    stateRef.current = {
+      profile,
+      aboutCards,
+      projects,
+      photography,
+      blog,
+      skills,
+      journey,
+      stats,
+      socials,
+      settings
+    };
+  }, [profile, aboutCards, projects, photography, blog, skills, journey, stats, socials, settings]);
+
+  // Persist all working state to localStorage (STABLE callback, zero dependencies)
   const saveToLocalCache = useCallback((overrides: Partial<any> = {}) => {
     if (typeof window === 'undefined') return;
     try {
       const snapshot = {
-        profile,
-        aboutCards,
-        projects,
-        photography,
-        blog,
-        skills,
-        journey,
-        stats,
-        socials,
-        settings,
+        ...stateRef.current,
         ...overrides
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot));
     } catch {
       // ignore storage quota errors
     }
-  }, [profile, aboutCards, projects, photography, blog, skills, journey, stats, socials, settings]);
+  }, []);
 
-  // Fetch Public Data from Server
+  // Fetch Public Data from Server (runs ONCE on mount)
   const fetchPublicData = useCallback(async () => {
     try {
       const [profRes, aboutRes, projRes, photoRes, blogRes, skillRes, journeyRes, statRes, socRes, setRes] = await Promise.allSettled([
@@ -175,8 +205,12 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
       const updates: any = {};
       if (profRes.status === 'fulfilled' && profRes.value) {
-        setProfile(profRes.value);
-        updates.profile = profRes.value;
+        const p = profRes.value;
+        if (p.avatarUrl === '/avatar.svg' || !p.avatarUrl) {
+          p.avatarUrl = '/avatar.jpg';
+        }
+        setProfile(p);
+        updates.profile = p;
       }
       if (aboutRes.status === 'fulfilled' && aboutRes.value && Array.isArray(aboutRes.value)) {
         setAboutCards(aboutRes.value);
@@ -211,8 +245,12 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         updates.socials = socRes.value;
       }
       if (setRes.status === 'fulfilled' && setRes.value) {
-        setSettings(setRes.value);
-        updates.settings = setRes.value;
+        const s = setRes.value;
+        if (s.profileImage === '/avatar.svg' || !s.profileImage) {
+          s.profileImage = '/avatar.jpg';
+        }
+        setSettings(s);
+        updates.settings = s;
       }
 
       if (Object.keys(updates).length > 0) {
@@ -258,13 +296,19 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     }
   }, [getAuthToken, saveToLocalCache]);
 
+  // Run public data fetch ONLY ONCE on mount
   useEffect(() => {
     fetchPublicData();
-  }, [fetchPublicData]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Run admin data fetch once when authenticated
+  const adminDataFetchedRef = useRef(false);
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && !adminDataFetchedRef.current) {
+      adminDataFetchedRef.current = true;
       fetchAdminData();
+    } else if (!isAuthenticated) {
+      adminDataFetchedRef.current = false;
     }
   }, [isAuthenticated, fetchAdminData]);
 
@@ -1181,6 +1225,48 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  // 14. Image Upload to Server
+  const uploadImage = async (imageFileOrBase64: File | string, name?: string): Promise<string | null> => {
+    const token = requireAuthCheck();
+    if (!token) return null;
+
+    try {
+      let base64String = '';
+      if (typeof imageFileOrBase64 === 'string') {
+        base64String = imageFileOrBase64;
+      } else {
+        base64String = await compressImageFile(imageFileOrBase64, 1600, 1600, 0.85);
+      }
+
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          image: base64String,
+          name: name || 'upload'
+        })
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data.url) {
+          return data.url;
+        }
+      }
+
+      // If upload failed, fallback to base64
+      console.warn("Upload fallback to base64 string");
+      return base64String;
+    } catch (err) {
+      console.error("Upload error:", err);
+      if (typeof imageFileOrBase64 === 'string') return imageFileOrBase64;
+      return null;
+    }
+  };
+
   return (
     <DataContext.Provider
       value={{
@@ -1226,7 +1312,8 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         fetchAdminData,
         syncAllData,
         exportBackup,
-        importBackup
+        importBackup,
+        uploadImage
       }}
     >
       {children}

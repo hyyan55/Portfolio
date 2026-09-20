@@ -33,7 +33,7 @@ export const Home: React.FC = () => {
           "jobTitle": ["Developer", "Medical Student", "Photographer"],
           "description": "Sudanese Developer, Medical Student & Photographer based in Kassala, Sudan.",
           "url": "https://hayyanmohamed.com",
-          "image": "https://hayyanmohamed.com/avatar.svg",
+          "image": "https://hayyanmohamed.com/avatar.jpg",
           "email": "hyyanmohamed55@gmail.com",
           "address": {
             "@type": "PostalAddress",

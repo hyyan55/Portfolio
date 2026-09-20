@@ -6,7 +6,7 @@ export const initialSettings: SiteSettings = {
   logoText: "Hayyan Mohamed",
   githubUsername: "hyyan55",
   githubPortfolioRepo: "https://github.com/hyyan55/Portfolio",
-  profileImage: "/avatar.svg",
+  profileImage: "/avatar.jpg",
   accentColor: "#38BDF8",
   darkModeDefault: true,
   showWhatsAppButton: false,

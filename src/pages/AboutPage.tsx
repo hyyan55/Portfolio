@@ -29,7 +29,7 @@ export const AboutPage: React.FC = () => {
         "jobTitle": ["Developer", "Medical Student", "Photographer"],
         "description": "Sudanese Developer, Medical Student & Photographer based in Kassala, Sudan.",
         "url": "https://hayyanmohamed.com",
-        "image": "https://hayyanmohamed.com/avatar.svg",
+        "image": "https://hayyanmohamed.com/avatar.jpg",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Kassala",
@@ -65,9 +65,10 @@ export const AboutPage: React.FC = () => {
             <div className="lg:col-span-4 flex flex-col items-center lg:items-start text-center lg:text-left">
               <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-3xl overflow-hidden bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-900 dark:to-zinc-800 border-2 border-zinc-200/80 dark:border-zinc-800 shadow-xl mb-6 p-2">
                 <img
-                  src={profile.avatarUrl || '/avatar.svg'}
+                  src={profile.avatarUrl || '/avatar.jpg'}
                   alt="Hayyan Mohamed (حيان محمد)"
                   className="w-full h-full object-cover rounded-2xl"
+                  referrerPolicy="no-referrer"
                 />
               </div>
 

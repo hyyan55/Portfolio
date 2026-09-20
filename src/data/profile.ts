@@ -14,7 +14,7 @@ export const initialProfile: Profile = {
   locationBadge: "Kassala, Sudan",
   aboutIntro: "طالب طب ومطور يهتم بتطوير التطبيقات والمواقع والمشاريع التقنية، مع اهتمام بالتصوير والمحتوى البصري.",
   aboutBio: "Hayyan Mohamed (حيان محمد) is a Sudanese developer, medical student, and visual photographer based in Kassala, Sudan. Focused on building high-performance web applications, utility tools, and capturing visual moments with careful optical composition.",
-  avatarUrl: "/avatar.svg",
+  avatarUrl: "/avatar.jpg",
   heroFloatingTagline: "Kassala, Sudan",
   heroCtaWorkText: "View Projects",
   heroCtaContactText: "Contact"

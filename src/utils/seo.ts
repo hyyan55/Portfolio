@@ -14,7 +14,7 @@ export function usePageSeo({
   description,
   canonicalPath = '',
   ogType = 'website',
-  ogImage = 'https://hayyanmohamed.com/avatar.svg',
+  ogImage = 'https://hayyanmohamed.com/avatar.jpg',
   schema
 }: SeoProps) {
   useEffect(() => {

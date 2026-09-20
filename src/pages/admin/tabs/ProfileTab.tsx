@@ -20,7 +20,7 @@ import { compressImageFile } from '../../../utils/imageCompressor';
 import { AboutCard } from '../../../types';
 
 export const ProfileTab: React.FC = () => {
-  const { profile, updateProfile, aboutCards, updateAboutCards, addAboutCard, deleteAboutCard } = useData();
+  const { profile, updateProfile, aboutCards, updateAboutCards, addAboutCard, deleteAboutCard, uploadImage } = useData();
   const [formData, setFormData] = useState({ ...profile });
   const [cardsList, setCardsList] = useState<AboutCard[]>([...aboutCards]);
   const [titlesInput, setTitlesInput] = useState(profile.titles.join(', '));
@@ -41,10 +41,12 @@ export const ProfileTab: React.FC = () => {
     if (file) {
       try {
         setIsCompressing(true);
-        const compressedBase64 = await compressImageFile(file, 800, 800, 0.82);
-        setFormData(prev => ({ ...prev, avatarUrl: compressedBase64 }));
+        const uploadedUrl = await uploadImage(file, 'hayyan_avatar');
+        if (uploadedUrl) {
+          setFormData(prev => ({ ...prev, avatarUrl: uploadedUrl }));
+        }
       } catch (err) {
-        console.error("Avatar compression error:", err);
+        console.error("Avatar upload error:", err);
       } finally {
         setIsCompressing(false);
       }

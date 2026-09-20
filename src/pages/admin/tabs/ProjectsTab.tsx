@@ -6,7 +6,7 @@ import { ConfirmModal } from '../../../components/common/ConfirmModal';
 import { compressImageFile } from '../../../utils/imageCompressor';
 
 export const ProjectsTab: React.FC = () => {
-  const { projects, addProject, updateProject, deleteProject } = useData();
+  const { projects, addProject, updateProject, deleteProject, uploadImage } = useData();
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -60,10 +60,12 @@ export const ProjectsTab: React.FC = () => {
     if (file) {
       try {
         setIsCompressing(true);
-        const compressedBase64 = await compressImageFile(file, 1600, 1000, 0.82);
-        setForm(prev => ({ ...prev, image: compressedBase64 }));
+        const uploadedUrl = await uploadImage(file, 'project');
+        if (uploadedUrl) {
+          setForm(prev => ({ ...prev, image: uploadedUrl }));
+        }
       } catch (err) {
-        console.error("Compression error:", err);
+        console.error("Upload error:", err);
       } finally {
         setIsCompressing(false);
       }

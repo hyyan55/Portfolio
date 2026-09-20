@@ -349,11 +349,6 @@
   },
   "activityLog": [
     {
-      "id": "act-1789940035553",
-      "action": "Uploaded image: test_upload-1789940035552.jpg",
-      "timestamp": "2026-09-20T21:33:55.553Z"
-    },
-    {
       "id": "act-1789940035543",
       "action": "Updated profile information",
       "timestamp": "2026-09-20T21:33:55.543Z"
