@@ -232,7 +232,7 @@ function loadInitialData(): DatabaseSchema {
       {
         id: "msg-welcome-1",
         name: "نظام الموقع",
-        email: "system@hayyanmohamed.me",
+        email: "hyyanmohamed55@gmail.com",
         subject: "مرحباً بك في لوحة تحكم موقعك الشخصي",
         message: "أهلاً بك حيان! تم تفعيل موقعك الشخصي ولوحة التحكم باللغة العربية بنجاح، ويمكنك إدارة المحتوى وتلقي الرسائل هنا بكل سهولة.",
         read: false,

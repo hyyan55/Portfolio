@@ -23,7 +23,7 @@ export const BlogListPage: React.FC = () => {
       "@type": "Blog",
       "name": "Hayyan Mohamed Blog",
       "description": "Articles on software engineering, clinical thinking, and visual storytelling.",
-      "url": "https://hayyanmohamed.com/blog",
+      "url": "https://7yyanmo7.ai.studio/blog",
       "author": {
         "@type": "Person",
         "name": "Hayyan Mohamed"

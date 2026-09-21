@@ -23,13 +23,13 @@ export const AboutPage: React.FC = () => {
       "@type": "ProfilePage",
       "mainEntity": {
         "@type": "Person",
-        "@id": "https://hayyanmohamed.com/#person",
+        "@id": "https://7yyanmo7.ai.studio/#person",
         "name": "Hayyan Mohamed",
         "alternateName": ["Hayyan Mohammed", "Hyyan Mohamed", "حيان محمد"],
         "jobTitle": ["Developer", "Medical Student", "Photographer"],
         "description": "Sudanese Developer, Medical Student & Photographer based in Kassala, Sudan.",
-        "url": "https://hayyanmohamed.com",
-        "image": "https://hayyanmohamed.com/avatar.jpg",
+        "url": "https://7yyanmo7.ai.studio/",
+        "image": "https://7yyanmo7.ai.studio/avatar.jpg",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Kassala",

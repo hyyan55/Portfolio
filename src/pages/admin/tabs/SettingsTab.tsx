@@ -265,7 +265,7 @@ export const SettingsTab: React.FC = () => {
                 type="email"
                 value={siteForm.contactEmail || 'hayyan@example.com'}
                 onChange={(e) => setSiteForm({ ...siteForm, contactEmail: e.target.value })}
-                placeholder="contact@hayyanmohamed.com"
+                placeholder="hyyanmohamed55@gmail.com"
                 className="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-white text-sm focus:outline-none focus:border-sky-500"
               />
             </div>

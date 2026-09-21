@@ -1,9 +1,9 @@
 import React from 'react';
-import { ArrowRight, Mail, Sparkles, MapPin } from 'lucide-react';
+import { ArrowRight, MessageCircle, Sparkles, MapPin } from 'lucide-react';
 import { useData } from '../../context/DataContext';
 
 export const Hero: React.FC = () => {
-  const { profile } = useData();
+  const { profile, settings, socials } = useData();
 
   const scrollToSection = (id: string) => {
     const elem = document.getElementById(id);
@@ -11,6 +11,11 @@ export const Hero: React.FC = () => {
       elem.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const whatsappLink = socials.find(s => s.platform.toLowerCase() === 'whatsapp');
+  const cleanNumber = (settings.whatsappNumber || '+249912345678').replace(/[^0-9]/g, '');
+  const encodedMsg = encodeURIComponent(settings.whatsappDefaultMessage || settings.whatsAppMessage || 'مرحباً حيان، اطلعت على موقعك وأود التواصل معك');
+  const whatsappUrl = whatsappLink?.url?.includes('wa.me') ? whatsappLink.url : `https://wa.me/${cleanNumber}?text=${encodedMsg}`;
 
   return (
     <section id="home" className="relative min-h-[92vh] flex items-center pt-24 pb-16 overflow-hidden">
@@ -57,20 +62,22 @@ export const Hero: React.FC = () => {
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-3.5">
               <button
-                onClick={() => scrollToSection('projects')}
+                onClick={() => scrollToSection('about')}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 dark:bg-white dark:hover:bg-zinc-100 text-white dark:text-zinc-900 font-semibold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
               >
-                <span>View My Work</span>
+                <span>About</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
-              <button
-                onClick={() => scrollToSection('contact')}
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-800 font-semibold text-sm hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
               >
-                <Mail className="w-4 h-4 text-sky-500" />
-                <span>Contact Me</span>
-              </button>
+                <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                <span>WhatsApp</span>
+              </a>
             </div>
           </div>
 

@@ -14,7 +14,7 @@ export function usePageSeo({
   description,
   canonicalPath = '',
   ogType = 'website',
-  ogImage = 'https://hayyanmohamed.com/avatar.jpg',
+  ogImage = 'https://7yyanmo7.ai.studio/avatar.jpg',
   schema
 }: SeoProps) {
   useEffect(() => {
@@ -35,6 +35,9 @@ export function usePageSeo({
       elem.setAttribute('content', content);
     };
 
+    // Ensure Robots tag
+    setMeta('name', 'robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+
     // Description & OpenGraph
     setMeta('name', 'description', description);
     setMeta('property', 'og:title', fullTitle);
@@ -46,16 +49,23 @@ export function usePageSeo({
     setMeta('name', 'twitter:image', ogImage);
 
     // 3. Update Canonical link
-    const baseUrl = 'https://hayyanmohamed.com';
-    const canonicalUrl = `${baseUrl}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}`;
+    const baseUrl = 'https://7yyanmo7.ai.studio';
+    const canonicalUrl = canonicalPath === '' || canonicalPath === '/'
+      ? `${baseUrl}/`
+      : `${baseUrl}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}`;
     setMeta('property', 'og:url', canonicalUrl);
     setMeta('name', 'twitter:url', canonicalUrl);
 
-    let linkCanonical = document.querySelector('link[rel="canonical"]');
+    const canonicalTags = document.querySelectorAll('link[rel="canonical"]');
+    let linkCanonical = canonicalTags[0];
     if (!linkCanonical) {
       linkCanonical = document.createElement('link');
       linkCanonical.setAttribute('rel', 'canonical');
       document.head.appendChild(linkCanonical);
+    }
+    // Remove any duplicate canonical links to guarantee strictly ONE canonical tag
+    for (let i = 1; i < canonicalTags.length; i++) {
+      canonicalTags[i].remove();
     }
     linkCanonical.setAttribute('href', canonicalUrl);
 

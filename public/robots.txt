@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /admin
-Disallow: /api/admin
 
-Sitemap: https://hayyanmohamed.me/sitemap.xml
+Sitemap: https://7yyanmo7.ai.studio/sitemap.xml

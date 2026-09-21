@@ -23,7 +23,7 @@ export const ProjectsPage: React.FC = () => {
       "@type": "CollectionPage",
       "name": "Projects by Hayyan Mohamed",
       "description": "Software, web tools, and open-source projects created by Hayyan Mohamed.",
-      "url": "https://hayyanmohamed.com/projects"
+      "url": "https://7yyanmo7.ai.studio/projects"
     }
   });
 

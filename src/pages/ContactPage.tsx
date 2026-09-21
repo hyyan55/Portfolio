@@ -10,7 +10,7 @@ import { useData } from '../context/DataContext';
 import { usePageSeo } from '../utils/seo';
 
 export const ContactPage: React.FC = () => {
-  const { socials, sendMessage } = useData();
+  const { socials, settings, sendMessage } = useData();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,6 +19,11 @@ export const ContactPage: React.FC = () => {
   });
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
+
+  const whatsappLink = socials.find(s => s.platform.toLowerCase() === 'whatsapp');
+  const cleanNumber = (settings.whatsappNumber || '+249912345678').replace(/[^0-9]/g, '');
+  const encodedMsg = encodeURIComponent(settings.whatsappDefaultMessage || settings.whatsAppMessage || 'مرحباً حيان، أود التواصل معك عبر موقعك');
+  const whatsappUrl = whatsappLink?.url?.includes('wa.me') ? whatsappLink.url : `https://wa.me/${cleanNumber}?text=${encodedMsg}`;
 
   usePageSeo({
     title: "Contact | Hayyan Mohamed (حيان محمد) - Kassala, Sudan",
@@ -29,7 +34,7 @@ export const ContactPage: React.FC = () => {
       "@type": "ContactPage",
       "name": "Contact Hayyan Mohamed",
       "description": "Contact channels and communication form for Hayyan Mohamed.",
-      "url": "https://hayyanmohamed.com/contact",
+      "url": "https://7yyanmo7.ai.studio/contact",
       "mainEntity": {
         "@type": "Person",
         "name": "Hayyan Mohamed",
@@ -92,22 +97,24 @@ export const ContactPage: React.FC = () => {
             {/* Left Column: Direct Contact Info */}
             <div className="lg:col-span-5 space-y-6">
               
-              {/* Primary Email Card */}
+              {/* Primary WhatsApp Card */}
               <div className="p-6 rounded-2xl bg-zinc-50 dark:bg-[#111111] border border-zinc-200/80 dark:border-zinc-800/80">
-                <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center mb-4">
-                  <Mail className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-[#25D366] flex items-center justify-center mb-4">
+                  <MessageCircle className="w-5 h-5" />
                 </div>
                 <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">
-                  Primary Email
+                  تواصل عبر واتساب / WhatsApp
                 </div>
                 <a
-                  href="mailto:hyyanmohamed55@gmail.com"
-                  className="text-base sm:text-lg font-bold text-zinc-900 dark:text-white hover:text-sky-500 transition-colors block break-all"
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-base sm:text-lg font-bold text-zinc-900 dark:text-white hover:text-emerald-500 transition-colors block break-all"
                 >
-                  hyyanmohamed55@gmail.com
+                  {settings.whatsappNumber || '+249 91 234 5678'}
                 </a>
                 <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-                  Responds to technical, professional, and academic inquiries.
+                  المحادثة المباشرة والسريعة عبر تطبيق واتساب.
                 </p>
               </div>
 

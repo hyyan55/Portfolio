@@ -19,21 +19,21 @@ export const Home: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home');
 
   usePageSeo({
-    title: "Hayyan Mohamed (حيان محمد) | Official Portfolio - Developer, Medical Student & Photographer",
-    description: "The official website and digital identity of Hayyan Mohamed (حيان محمد), a Sudanese developer, medical student and photographer based in Kassala, Sudan. Projects, photography, and blog.",
+    title: "Hayyan Mohamed | Sudanese Developer, Medical Student & Photographer",
+    description: "Official portfolio of Hayyan Mohamed, a Sudanese developer, medical student, and photographer based in Kassala, Sudan. Showcasing software projects, medical insights, and visual photography.",
     canonicalPath: "/",
     schema: {
       "@context": "https://schema.org",
       "@graph": [
         {
           "@type": "Person",
-          "@id": "https://hayyanmohamed.com/#person",
+          "@id": "https://7yyanmo7.ai.studio/#person",
           "name": "Hayyan Mohamed",
           "alternateName": ["Hayyan Mohammed", "Hyyan Mohamed", "حيان محمد"],
           "jobTitle": ["Developer", "Medical Student", "Photographer"],
           "description": "Sudanese Developer, Medical Student & Photographer based in Kassala, Sudan.",
-          "url": "https://hayyanmohamed.com",
-          "image": "https://hayyanmohamed.com/avatar.jpg",
+          "url": "https://7yyanmo7.ai.studio/",
+          "image": "https://7yyanmo7.ai.studio/avatar.jpg",
           "email": "hyyanmohamed55@gmail.com",
           "address": {
             "@type": "PostalAddress",
@@ -47,12 +47,12 @@ export const Home: React.FC = () => {
         },
         {
           "@type": "WebSite",
-          "@id": "https://hayyanmohamed.com/#website",
-          "url": "https://hayyanmohamed.com",
+          "@id": "https://7yyanmo7.ai.studio/#website",
+          "url": "https://7yyanmo7.ai.studio/",
           "name": "Hayyan Mohamed - Official Website",
           "alternateName": ["حيان محمد", "Hyyan Mohamed"],
           "publisher": {
-            "@id": "https://hayyanmohamed.com/#person"
+            "@id": "https://7yyanmo7.ai.studio/#person"
           }
         }
       ]

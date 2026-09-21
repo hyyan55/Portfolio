@@ -33,16 +33,16 @@ export const BlogPostPage: React.FC = () => {
       "author": {
         "@type": "Person",
         "name": post.author || "Hayyan Mohamed",
-        "url": "https://hayyanmohamed.com"
+        "url": "https://7yyanmo7.ai.studio/"
       },
       "publisher": {
         "@type": "Person",
         "name": "Hayyan Mohamed",
-        "url": "https://hayyanmohamed.com"
+        "url": "https://7yyanmo7.ai.studio/"
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": `https://hayyanmohamed.com/blog/${post.slug}`
+        "@id": `https://7yyanmo7.ai.studio/blog/${post.slug}`
       }
     } : undefined
   });

@@ -574,7 +574,7 @@ async function startServer() {
       res.type('text/plain');
       return res.sendFile(robotsPath);
     }
-    res.type('text/plain').send("User-agent: *\nAllow: /\nDisallow: /admin\nSitemap: https://hayyanmohamed.me/sitemap.xml");
+    res.type('text/plain').send("User-agent: *\nAllow: /\n\nSitemap: https://7yyanmo7.ai.studio/sitemap.xml\n");
   });
 
   app.get('/sitemap.xml', (req: Request, res: Response) => {
