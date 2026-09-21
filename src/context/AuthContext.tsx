@@ -12,19 +12,42 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
+  // SECURITY FIX: Only read token from sessionStorage (active browser tab session).
+  // Never automatically authenticate from permanent localStorage.
   const [token, setToken] = useState<string | null>(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('hayyan_admin_token') || sessionStorage.getItem('hayyan_admin_token');
+      // Proactively clear any legacy persistent tokens from localStorage
+      try {
+        localStorage.removeItem('hayyan_admin_token');
+        localStorage.removeItem('hayyan_admin_user');
+      } catch {
+        // ignore
+      }
+      return sessionStorage.getItem('hayyan_admin_token');
     }
     return null;
   });
+
   const [username, setUsername] = useState<string | null>(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('hayyan_admin_user') || sessionStorage.getItem('hayyan_admin_user');
+      return sessionStorage.getItem('hayyan_admin_user');
     }
     return null;
   });
+
   const [isLoading, setIsLoading] = useState(true);
+
+  // Clear any persistent localStorage tokens on component mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.removeItem('hayyan_admin_token');
+        localStorage.removeItem('hayyan_admin_user');
+      } catch {
+        // ignore
+      }
+    }
+  }, []);
 
   useEffect(() => {
     async function checkAuth() {
@@ -42,19 +65,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const data = await res.json();
         if (data.valid) {
           setUsername(data.username || 'hyyan55');
-          localStorage.setItem('hayyan_admin_user', data.username || 'hyyan55');
           sessionStorage.setItem('hayyan_admin_user', data.username || 'hyyan55');
         } else {
-          // Token expired or invalid
+          // Token expired or invalid: immediately clear session
           setToken(null);
           setUsername(null);
-          localStorage.removeItem('hayyan_admin_token');
-          localStorage.removeItem('hayyan_admin_user');
           sessionStorage.removeItem('hayyan_admin_token');
           sessionStorage.removeItem('hayyan_admin_user');
         }
       } catch (err) {
         console.error('Auth verification error:', err);
+        setToken(null);
+        setUsername(null);
+        sessionStorage.removeItem('hayyan_admin_token');
+        sessionStorage.removeItem('hayyan_admin_user');
       } finally {
         setIsLoading(false);
       }
@@ -77,26 +101,38 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (res.ok && data.success && data.token) {
         setToken(data.token);
         setUsername(data.username || user);
-        localStorage.setItem('hayyan_admin_token', data.token);
-        localStorage.setItem('hayyan_admin_user', data.username || user);
+        // Only save in active sessionStorage
         sessionStorage.setItem('hayyan_admin_token', data.token);
         sessionStorage.setItem('hayyan_admin_user', data.username || user);
+        // Ensure localStorage is cleared
+        try {
+          localStorage.removeItem('hayyan_admin_token');
+          localStorage.removeItem('hayyan_admin_user');
+        } catch {
+          // ignore
+        }
         return { success: true, message: data.message };
       }
 
-      return { success: false, message: data.error || 'Invalid credentials' };
+      return { success: false, message: data.error || 'اسم المستخدم أو كلمة المرور غير صحيحة' };
     } catch (err: any) {
-      return { success: false, message: 'Server connection error. Please try again.' };
+      return { success: false, message: 'خطأ في الاتصال بالخادم. يرجى المحاولة مرة أخرى.' };
     }
   };
 
   const logout = () => {
     setToken(null);
     setUsername(null);
-    localStorage.removeItem('hayyan_admin_token');
-    localStorage.removeItem('hayyan_admin_user');
-    sessionStorage.removeItem('hayyan_admin_token');
-    sessionStorage.removeItem('hayyan_admin_user');
+    if (typeof window !== 'undefined') {
+      try {
+        sessionStorage.removeItem('hayyan_admin_token');
+        sessionStorage.removeItem('hayyan_admin_user');
+        localStorage.removeItem('hayyan_admin_token');
+        localStorage.removeItem('hayyan_admin_user');
+      } catch {
+        // ignore
+      }
+    }
     window.location.href = '/admin/login';
   };
 
@@ -123,3 +159,4 @@ export function useAuth() {
   }
   return context;
 }
+

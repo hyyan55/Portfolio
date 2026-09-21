@@ -135,11 +135,11 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   const [adminStats, setAdminStats] = useState<AdminStats | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Helper to get authorization token reliably
+  // Helper to get authorization token reliably (sessionStorage only, no persistent auto-login)
   const getAuthToken = useCallback((): string | null => {
     if (contextToken) return contextToken;
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('hayyan_admin_token') || sessionStorage.getItem('hayyan_admin_token');
+      return sessionStorage.getItem('hayyan_admin_token');
     }
     return null;
   }, [contextToken]);
@@ -181,6 +181,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         ...stateRef.current,
         ...overrides
       };
+      stateRef.current = snapshot;
       localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot));
     } catch {
       // ignore storage quota errors
@@ -193,9 +194,9 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       const [profRes, aboutRes, projRes, photoRes, blogRes, skillRes, journeyRes, statRes, socRes, setRes] = await Promise.allSettled([
         fetch('/api/profile').then(r => r.ok ? r.json() : null),
         fetch('/api/about-cards').then(r => r.ok ? r.json() : null),
-        fetch('/api/projects').then(r => r.ok ? r.json() : null),
-        fetch('/api/photography').then(r => r.ok ? r.json() : null),
-        fetch('/api/blog').then(r => r.ok ? r.json() : null),
+        fetch('/api/projects?all=true').then(r => r.ok ? r.json() : null),
+        fetch('/api/photography?all=true').then(r => r.ok ? r.json() : null),
+        fetch('/api/blog?all=true').then(r => r.ok ? r.json() : null),
         fetch('/api/skills').then(r => r.ok ? r.json() : null),
         fetch('/api/journey').then(r => r.ok ? r.json() : null),
         fetch('/api/stats').then(r => r.ok ? r.json() : null),
@@ -1008,6 +1009,13 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
     try {
       const merged = { ...settings, ...newSettings };
+      if (newSettings.whatsappNumber !== undefined) {
+        merged.whatsappNumber = newSettings.whatsappNumber;
+        merged.whatsAppNumber = newSettings.whatsappNumber;
+      } else if (newSettings.whatsAppNumber !== undefined) {
+        merged.whatsappNumber = newSettings.whatsAppNumber;
+        merged.whatsAppNumber = newSettings.whatsAppNumber;
+      }
       const res = await fetch('/api/settings', {
         method: 'PUT',
         headers: {

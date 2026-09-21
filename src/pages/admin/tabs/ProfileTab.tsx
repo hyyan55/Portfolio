@@ -87,10 +87,9 @@ export const ProfileTab: React.FC = () => {
         titles: parsedTitles.length > 0 ? parsedTitles : formData.titles
       };
 
-      await Promise.all([
-        updateProfile(updatedProfile),
-        updateAboutCards(cardsList)
-      ]);
+      // Sequential updates to avoid race conditions in storage and state
+      await updateProfile(updatedProfile);
+      await updateAboutCards(cardsList);
     } finally {
       setSaving(false);
     }

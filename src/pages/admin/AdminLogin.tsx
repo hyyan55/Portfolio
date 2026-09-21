@@ -39,18 +39,20 @@ export const AdminLogin: React.FC = () => {
             <Lock className="w-6 h-6" />
           </div>
           <h1 className="text-2xl font-black font-heading tracking-tight text-white mb-1">
-            Hayyan Mohamed
+            لوحة إدارة الموقع | Hayyan Mohamed
           </h1>
           <p className="text-xs text-zinc-400 tracking-wide">
-            Private Content Management System
+            يرجى تسجيل الدخول للوصول إلى لوحة التحكم والتعديل
           </p>
         </div>
 
         {/* Login Box */}
         <div className="p-8 rounded-2xl bg-zinc-900/90 border border-zinc-800 shadow-2xl backdrop-blur-xl">
-          <div className="flex items-center gap-2 text-xs font-semibold text-sky-400 bg-sky-950/40 border border-sky-900/40 px-3 py-2 rounded-xl mb-6">
-            <ShieldCheck className="w-4 h-4 shrink-0" />
-            <span>Authenticated Administrator Gateway</span>
+          <div className="flex items-center justify-between text-xs font-semibold text-sky-400 bg-sky-950/40 border border-sky-900/40 px-3 py-2 rounded-xl mb-6">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 shrink-0" />
+              <span>تسجيل دخول محمي • Secure Admin</span>
+            </div>
           </div>
 
           {error && (
@@ -63,7 +65,7 @@ export const AdminLogin: React.FC = () => {
           <form onSubmit={handleSubmit} className="space-y-4 text-left">
             <div>
               <label className="block text-xs font-semibold text-zinc-300 mb-1.5">
-                Username
+                اسم المستخدم / Username
               </label>
               <div className="relative">
                 <User className="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -73,7 +75,7 @@ export const AdminLogin: React.FC = () => {
                   autoFocus
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  placeholder="Admin username"
+                  placeholder="hyyan55"
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-white placeholder-zinc-600 text-sm focus:outline-none focus:border-sky-500 transition-colors"
                 />
               </div>
@@ -81,7 +83,7 @@ export const AdminLogin: React.FC = () => {
 
             <div>
               <label className="block text-xs font-semibold text-zinc-300 mb-1.5">
-                Password
+                كلمة المرور / Password
               </label>
               <div className="relative">
                 <KeyRound className="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -101,7 +103,7 @@ export const AdminLogin: React.FC = () => {
               disabled={loading}
               className="w-full mt-2 inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-sky-500 hover:bg-sky-400 text-black font-bold text-sm shadow-md shadow-sky-500/20 transition-all duration-200 disabled:opacity-60 cursor-pointer"
             >
-              <span>{loading ? 'Authenticating...' : 'Sign In to Dashboard'}</span>
+              <span>{loading ? 'جارٍ التحقق...' : 'تسجيل الدخول إلى لوحة التحكم'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>
@@ -113,7 +115,7 @@ export const AdminLogin: React.FC = () => {
             href="/"
             className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
           >
-            ← Return to Public Portfolio
+            ← العودة إلى الموقع الرئيسي (Public Site)
           </a>
         </div>
       </div>

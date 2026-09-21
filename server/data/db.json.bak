@@ -345,9 +345,25 @@
     "footerText": "© 2026 Hayyan Mohamed. All rights reserved.",
     "footerSubtitle": "Sudanese Developer, Medical Student & Photographer • Kassala, Sudan",
     "contactEmail": "hyyanmohamed55@gmail.com",
-    "contactLocationText": "Kassala, Sudan"
+    "contactLocationText": "Kassala, Sudan",
+    "whatsappNumber": "+249912345678"
   },
   "activityLog": [
+    {
+      "id": "act-1789987170724",
+      "action": "Admin logged in successfully (hyyan55)",
+      "timestamp": "2026-09-21T10:39:30.724Z"
+    },
+    {
+      "id": "act-1789987165072",
+      "action": "Admin logged in successfully (hyyan55)",
+      "timestamp": "2026-09-21T10:39:25.072Z"
+    },
+    {
+      "id": "act-1789940035553",
+      "action": "Uploaded image: test_upload-1789940035552.jpg",
+      "timestamp": "2026-09-20T21:33:55.553Z"
+    },
     {
       "id": "act-1789940035543",
       "action": "Updated profile information",

@@ -436,7 +436,15 @@ async function startServer() {
 
   app.put('/api/settings', requireAdmin, (req: Request, res: Response) => {
     const db = getDb();
-    db.settings = { ...db.settings, ...req.body };
+    const updated = { ...db.settings, ...req.body };
+    if (req.body.whatsappNumber !== undefined) {
+      updated.whatsappNumber = req.body.whatsappNumber;
+      updated.whatsAppNumber = req.body.whatsappNumber;
+    } else if (req.body.whatsAppNumber !== undefined) {
+      updated.whatsappNumber = req.body.whatsAppNumber;
+      updated.whatsAppNumber = req.body.whatsAppNumber;
+    }
+    db.settings = updated;
     saveDb(db);
     logActivity('Updated site settings');
     res.json(db.settings);
@@ -477,7 +485,17 @@ async function startServer() {
       if (Array.isArray(payload.journey)) db.journey = payload.journey;
       if (Array.isArray(payload.stats)) db.stats = payload.stats;
       if (Array.isArray(payload.socials)) db.socials = payload.socials;
-      if (payload.settings) db.settings = { ...db.settings, ...payload.settings };
+      if (payload.settings) {
+        const s = { ...db.settings, ...payload.settings };
+        if (payload.settings.whatsappNumber !== undefined) {
+          s.whatsappNumber = payload.settings.whatsappNumber;
+          s.whatsAppNumber = payload.settings.whatsappNumber;
+        } else if (payload.settings.whatsAppNumber !== undefined) {
+          s.whatsappNumber = payload.settings.whatsAppNumber;
+          s.whatsAppNumber = payload.settings.whatsAppNumber;
+        }
+        db.settings = s;
+      }
 
       saveDb(db);
       logActivity('Full database synchronization performed');

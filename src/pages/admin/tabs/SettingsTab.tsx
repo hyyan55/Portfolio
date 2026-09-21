@@ -28,7 +28,10 @@ export const SettingsTab: React.FC = () => {
     fetchAdminData
   } = useData();
 
-  const [siteForm, setSiteForm] = useState({ ...settings });
+  const [siteForm, setSiteForm] = useState({
+    ...settings,
+    whatsappNumber: settings.whatsappNumber ?? settings.whatsAppNumber ?? ''
+  });
   const [socialsList, setSocialsList] = useState([...socials]);
   const [saving, setSaving] = useState(false);
   const [syncing, setSyncing] = useState(false);
@@ -36,7 +39,10 @@ export const SettingsTab: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
-    setSiteForm({ ...settings });
+    setSiteForm({
+      ...settings,
+      whatsappNumber: settings.whatsappNumber ?? settings.whatsAppNumber ?? ''
+    });
   }, [settings]);
 
   React.useEffect(() => {
@@ -47,10 +53,14 @@ export const SettingsTab: React.FC = () => {
     e.preventDefault();
     setSaving(true);
     try {
-      await Promise.all([
-        updateSettings(siteForm),
-        updateSocials(socialsList)
-      ]);
+      const sanitized = {
+        ...siteForm,
+        whatsappNumber: siteForm.whatsappNumber ?? '',
+        whatsAppNumber: siteForm.whatsappNumber ?? ''
+      };
+      // Save sequentially to eliminate race conditions
+      await updateSettings(sanitized);
+      await updateSocials(socialsList);
     } finally {
       setSaving(false);
     }
@@ -247,7 +257,7 @@ export const SettingsTab: React.FC = () => {
               </label>
               <input
                 type="text"
-                value={siteForm.whatsappNumber || '+249912345678'}
+                value={siteForm.whatsappNumber ?? ''}
                 onChange={(e) => setSiteForm({ ...siteForm, whatsappNumber: e.target.value })}
                 placeholder="+249912345678"
                 className="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-white text-sm focus:outline-none focus:border-sky-500 font-mono"
@@ -263,7 +273,7 @@ export const SettingsTab: React.FC = () => {
               </label>
               <input
                 type="email"
-                value={siteForm.contactEmail || 'hayyan@example.com'}
+                value={siteForm.contactEmail ?? ''}
                 onChange={(e) => setSiteForm({ ...siteForm, contactEmail: e.target.value })}
                 placeholder="hyyanmohamed55@gmail.com"
                 className="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-white text-sm focus:outline-none focus:border-sky-500"
@@ -277,7 +287,7 @@ export const SettingsTab: React.FC = () => {
             </label>
             <input
               type="text"
-              value={siteForm.whatsappDefaultMessage || 'Hello Hayyan, I visited your portfolio and would like to connect.'}
+              value={siteForm.whatsappDefaultMessage ?? ''}
               onChange={(e) => setSiteForm({ ...siteForm, whatsappDefaultMessage: e.target.value })}
               className="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-white text-sm focus:outline-none focus:border-sky-500"
             />
@@ -290,7 +300,7 @@ export const SettingsTab: React.FC = () => {
               </label>
               <input
                 type="text"
-                value={siteForm.footerCopyright || 'Hayyan Mohamed. Built with precision and care.'}
+                value={siteForm.footerCopyright ?? ''}
                 onChange={(e) => setSiteForm({ ...siteForm, footerCopyright: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-white text-sm focus:outline-none focus:border-sky-500"
               />
@@ -302,7 +312,7 @@ export const SettingsTab: React.FC = () => {
               </label>
               <input
                 type="text"
-                value={siteForm.contactLocationText || 'Kassala, Sudan'}
+                value={siteForm.contactLocationText ?? ''}
                 onChange={(e) => setSiteForm({ ...siteForm, contactLocationText: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-white text-sm focus:outline-none focus:border-sky-500"
               />
