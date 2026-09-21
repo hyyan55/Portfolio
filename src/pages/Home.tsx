@@ -20,7 +20,7 @@ export const Home: React.FC = () => {
 
   usePageSeo({
     title: "Hayyan Mohamed | Sudanese Developer, Medical Student & Photographer",
-    description: "Official portfolio of Hayyan Mohamed, a Sudanese developer, medical student, and photographer based in Kassala, Sudan. Showcasing software projects, medical insights, and visual photography.",
+    description: "Official website of Hayyan Mohamed, a Sudanese developer, medical student, and photographer based in Kassala, Sudan. Explore his projects and visual works.",
     canonicalPath: "/",
     schema: {
       "@context": "https://schema.org",
@@ -30,8 +30,8 @@ export const Home: React.FC = () => {
           "@id": "https://7yyanmo7.ai.studio/#person",
           "name": "Hayyan Mohamed",
           "alternateName": ["Hayyan Mohammed", "Hyyan Mohamed", "حيان محمد"],
-          "jobTitle": ["Developer", "Medical Student", "Photographer"],
-          "description": "Sudanese Developer, Medical Student & Photographer based in Kassala, Sudan.",
+          "jobTitle": "Developer, Medical Student & Photographer",
+          "description": "Sudanese developer, medical student, and photographer based in Kassala, Sudan.",
           "url": "https://7yyanmo7.ai.studio/",
           "image": "https://7yyanmo7.ai.studio/avatar.jpg",
           "email": "hyyanmohamed55@gmail.com",
@@ -41,19 +41,33 @@ export const Home: React.FC = () => {
             "addressCountry": "Sudan"
           },
           "sameAs": [
-            "https://github.com/hyyan55",
-            "https://github.com/Hyyan404"
+            "https://github.com/hyyan55"
           ]
         },
         {
           "@type": "WebSite",
           "@id": "https://7yyanmo7.ai.studio/#website",
           "url": "https://7yyanmo7.ai.studio/",
-          "name": "Hayyan Mohamed - Official Website",
-          "alternateName": ["حيان محمد", "Hyyan Mohamed"],
+          "name": "Hayyan Mohamed",
+          "description": "Official website of Hayyan Mohamed, a Sudanese developer, medical student, and photographer based in Kassala, Sudan.",
           "publisher": {
             "@id": "https://7yyanmo7.ai.studio/#person"
-          }
+          },
+          "inLanguage": ["en", "ar"]
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://7yyanmo7.ai.studio/#webpage",
+          "url": "https://7yyanmo7.ai.studio/",
+          "name": "Hayyan Mohamed | Sudanese Developer, Medical Student & Photographer",
+          "isPartOf": {
+            "@id": "https://7yyanmo7.ai.studio/#website"
+          },
+          "about": {
+            "@id": "https://7yyanmo7.ai.studio/#person"
+          },
+          "description": "Official website of Hayyan Mohamed, a Sudanese developer, medical student, and photographer based in Kassala, Sudan. Explore his projects and visual works.",
+          "inLanguage": ["en", "ar"]
         }
       ]
     }

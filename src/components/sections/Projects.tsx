@@ -62,7 +62,9 @@ export const Projects: React.FC = () => {
               <div className="relative h-52 sm:h-60 w-full overflow-hidden bg-zinc-100 dark:bg-zinc-900">
                 <img
                   src={project.image}
-                  alt={project.title}
+                  alt={`${project.title} - Project by Hayyan Mohamed`}
+                  width="600"
+                  height="340"
                   loading="lazy"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />

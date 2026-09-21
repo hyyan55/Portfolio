@@ -588,7 +588,7 @@ async function startServer() {
   // SEO: Sitemap & Robots endpoints
   app.get('/robots.txt', (req: Request, res: Response) => {
     const robotsPath = path.join(process.cwd(), 'public', 'robots.txt');
-    if (path.resolve(robotsPath)) {
+    if (fs.existsSync(robotsPath)) {
       res.type('text/plain');
       return res.sendFile(robotsPath);
     }
@@ -597,7 +597,7 @@ async function startServer() {
 
   app.get('/sitemap.xml', (req: Request, res: Response) => {
     const sitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
-    if (path.resolve(sitemapPath)) {
+    if (fs.existsSync(sitemapPath)) {
       res.type('application/xml');
       return res.sendFile(sitemapPath);
     }

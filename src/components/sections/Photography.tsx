@@ -85,7 +85,9 @@ export const Photography: React.FC = () => {
               <div className="aspect-[4/3] w-full overflow-hidden">
                 <img
                   src={photo.imageUrl}
-                  alt={photo.title}
+                  alt={`${photo.title} - Photography by Hayyan Mohamed${photo.location ? ` in ${photo.location}` : ''}`}
+                  width="400"
+                  height="300"
                   loading="lazy"
                   className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-500"
                 />

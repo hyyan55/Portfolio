@@ -69,7 +69,7 @@ export const Lightbox: React.FC<LightboxProps> = ({ photo, onClose, onPrev, onNe
         <div className="relative rounded-xl overflow-hidden bg-zinc-950 max-h-[70vh] flex items-center justify-center shadow-2xl border border-zinc-800">
           <img
             src={photo.imageUrl}
-            alt={photo.title}
+            alt={`${photo.title} - Photography by Hayyan Mohamed`}
             className="max-h-[70vh] max-w-full w-auto h-auto object-contain rounded-lg"
           />
         </div>

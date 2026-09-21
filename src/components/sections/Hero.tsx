@@ -90,7 +90,9 @@ export const Hero: React.FC = () => {
               <div className="relative rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-2xl">
                 <img
                   src={profile.avatarUrl || '/avatar.jpg'}
-                  alt={profile.name}
+                  alt={`${profile.name} (حيان محمد) - Sudanese Developer, Medical Student & Photographer in Kassala, Sudan`}
+                  width="384"
+                  height="384"
                   className="w-full h-84 sm:h-96 object-cover object-center transition-all duration-500 group-hover:scale-105"
                   loading="eager"
                   referrerPolicy="no-referrer"

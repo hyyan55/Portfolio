@@ -26,8 +26,8 @@ export const AboutPage: React.FC = () => {
         "@id": "https://7yyanmo7.ai.studio/#person",
         "name": "Hayyan Mohamed",
         "alternateName": ["Hayyan Mohammed", "Hyyan Mohamed", "حيان محمد"],
-        "jobTitle": ["Developer", "Medical Student", "Photographer"],
-        "description": "Sudanese Developer, Medical Student & Photographer based in Kassala, Sudan.",
+        "jobTitle": "Developer, Medical Student & Photographer",
+        "description": "Sudanese developer, medical student, and photographer based in Kassala, Sudan.",
         "url": "https://7yyanmo7.ai.studio/",
         "image": "https://7yyanmo7.ai.studio/avatar.jpg",
         "address": {
@@ -36,8 +36,7 @@ export const AboutPage: React.FC = () => {
           "addressCountry": "Sudan"
         },
         "sameAs": [
-          "https://github.com/hyyan55",
-          "https://github.com/Hyyan404"
+          "https://github.com/hyyan55"
         ]
       }
     }
@@ -75,7 +74,7 @@ export const AboutPage: React.FC = () => {
               <h1 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white mb-1 font-heading">
                 {profile.name}
               </h1>
-              <p className="text-sm font-semibold text-sky-500 mb-3" dir="rtl">
+              <p className="text-sm font-semibold text-sky-500 mb-3" dir="rtl" lang="ar">
                 {profile.arabicName || 'حيان محمد'}
               </p>
 
